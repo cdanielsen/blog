@@ -1,21 +1,20 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import PropTypes from "prop-types"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
+    const { data, location } = this.props
+    const { title, description } = data.site.siteMetadata
     const posts = data.allMarkdownRemark.edges
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={location} title={title} description={description}>
         <SEO title="All posts" />
-        <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
@@ -43,6 +42,11 @@ class BlogIndex extends React.Component {
   }
 }
 
+BlogIndex.propTypes = {
+  data: PropTypes.object.isRequired,
+  location: PropTypes.string.isRequired,
+}
+
 export default BlogIndex
 
 export const pageQuery = graphql`
@@ -50,6 +54,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {

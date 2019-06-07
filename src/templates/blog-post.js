@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -11,9 +12,10 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
+    const { location } = this.props
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={location} title={siteTitle}>
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
@@ -64,6 +66,12 @@ class BlogPostTemplate extends React.Component {
       </Layout>
     )
   }
+}
+
+BlogPostTemplate.propTypes = {
+  data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
+  location: PropTypes.string.isRequired,
 }
 
 export default BlogPostTemplate

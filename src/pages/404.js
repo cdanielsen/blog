@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
@@ -17,6 +18,11 @@ class NotFoundPage extends React.Component {
       </Layout>
     )
   }
+}
+
+NotFoundPage.propTypes = {
+  data: PropTypes.object.isRequired,
+  location: PropTypes.string.isRequired,
 }
 
 export default NotFoundPage

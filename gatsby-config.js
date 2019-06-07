@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: `{} - [] === -0`,
+    author: `Christian Danielsen`,
+    description: `Evangalism for the church of JavaScript`,
+    siteUrl: `https://www.hotmess.codes/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `CKDanielsen`,
     },
   },
   plugins: [
@@ -74,5 +74,6 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    'gatsby-plugin-eslint',
   ],
 }
