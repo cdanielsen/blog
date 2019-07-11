@@ -42,6 +42,14 @@ function Header({ location }) {
           {title}
         </Link>
       </h1>
+      <h4
+        style={{
+          textAlign: `center`,
+          margin: `1rem auto`,
+        }}
+      >
+        {description}
+      </h4>
       <img
         src={tyler}
         alt={`Christian Danielsen`}
@@ -52,14 +60,6 @@ function Header({ location }) {
           height: rhythm(4),
         }}
       />
-      <h4
-        style={{
-          textAlign: `center`,
-          margin: `1rem auto`,
-        }}
-      >
-        {description}
-      </h4>
     </header>
   )
 
@@ -91,7 +91,7 @@ function Header({ location }) {
 }
 
 Header.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 export default Header

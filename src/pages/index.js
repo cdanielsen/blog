@@ -44,7 +44,7 @@ class BlogIndex extends React.Component {
 
 BlogIndex.propTypes = {
   data: PropTypes.object.isRequired,
-  location: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 export default BlogIndex

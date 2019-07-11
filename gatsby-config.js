@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `{} - [] === -0`,
     author: `Christian Danielsen`,
-    description: `Evangalism for the church of JavaScript`,
+    description: `Evangalism from the JavaScript pulpit`,
     siteUrl: `https://www.hotmess.codes/`,
     social: {
       twitter: `CKDanielsen`,

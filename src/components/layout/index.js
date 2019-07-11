@@ -18,11 +18,6 @@ class Layout extends React.Component {
       >
         <Header location={location} />
         <main>{children}</main>
-        <footer>
-          Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
       </div>
     )
   }
@@ -31,6 +26,6 @@ class Layout extends React.Component {
 export default Layout
 
 Layout.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
 }
