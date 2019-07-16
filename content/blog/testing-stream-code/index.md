@@ -296,7 +296,9 @@ describe('streamToFile', () => {
     const actualPromise = streamToFile(mockReadable, mockFilePath)
 
     setTimeout(() => {
-      mockReadable.emit('error', mockError)
+      mockReadable.emit('data', 'beep!')
+      mockReadable.emit('data', 'boop!')
+      mockReadable.emit('end')
     }, 100)
 
     // Assert

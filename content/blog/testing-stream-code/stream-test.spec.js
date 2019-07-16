@@ -50,4 +50,24 @@ describe("streamToFile", () => {
     // Assert
     await expect(actualPromise).rejects.toEqual(mockError)
   })
+  it('resolves if the data writes successfully', async () => {
+    // Arrange
+    const mockReadable = new PassThrough()
+    const mockWriteable = new PassThrough()
+    const mockFilePath = '/oh/what/a/file.txt'
+    const mockError = new Error('You crossed the streams!')
+    fs.createWriteStream.mockReturnValueOnce(mockWriteable)
+
+    // Act
+    const actualPromise = streamToFile(mockReadable, mockFilePath)
+
+    setTimeout(() => {
+      mockReadable.emit('data', 'beep!')
+      mockReadable.emit('data', 'boop!')
+      mockReadable.emit('end')
+    }, 100)
+
+    // Assert
+    await expect(actualPromise).resolves.toEqual(undefined)
+  })
 })
