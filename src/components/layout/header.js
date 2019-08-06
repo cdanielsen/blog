@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql, Link, useStaticQuery } from "gatsby"
-import tyler from "../../../content/assets/profile-pic.jpg"
 
 import { rhythm, scale } from "../../utils/typography"
 
@@ -25,7 +24,7 @@ function Header({ location }) {
     <header>
       <h1
         style={{
-          ...scale(1.5),
+          ...scale(1),
           marginBottom: rhythm(1),
           marginTop: 0,
           textAlign: `center`,
@@ -50,25 +49,16 @@ function Header({ location }) {
       >
         {description}
       </h4>
-      <img
-        src={tyler}
-        alt={`Christian Danielsen`}
-        style={{
-          display: `block`,
-          margin: `0 auto`,
-          width: rhythm(4),
-          height: rhythm(4),
-        }}
-      />
     </header>
   )
 
   const nonIndexHeader = (
     <header>
-      <h3
+      <h2
         style={{
           fontFamily: `Montserrat, sans-serif`,
           marginTop: 0,
+          textAlign: `center`,
         }}
       >
         <Link
@@ -81,7 +71,7 @@ function Header({ location }) {
         >
           {title}
         </Link>
-      </h3>
+      </h2>
     </header>
   )
 
