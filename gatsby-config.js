@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `{} - [] === -0`,
+    title: `hotmess.codes`,
+    masthead: `{} - [] === -0`,
     author: `Christian Danielsen`,
     description: `Evangalism from the JavaScript pulpit`,
     siteUrl: `https://www.hotmess.codes/`,
@@ -74,6 +75,14 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    'gatsby-plugin-eslint',
+    "gatsby-plugin-eslint",
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "hotmess.codes",
+        short_name: "hotmess",
+        icon: "src/images/tyler.jpg",
+      },
+    },
   ],
 }

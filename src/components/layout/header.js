@@ -12,14 +12,14 @@ function Header({ location }) {
           siteMetadata {
             title
             description
+            masthead
           }
         }
       }
     `
   )
-  const { title, description } = data.site.siteMetadata
+  const { masthead, description } = data.site.siteMetadata
   const rootPath = `${__PATH_PREFIX__}/`
-
   const indexHeader = (
     <header>
       <h1
@@ -38,7 +38,7 @@ function Header({ location }) {
           }}
           to={`/`}
         >
-          {title}
+          {masthead}
         </Link>
       </h1>
       <h4
@@ -69,7 +69,7 @@ function Header({ location }) {
           }}
           to={`/`}
         >
-          {title}
+          {masthead}
         </Link>
       </h2>
     </header>

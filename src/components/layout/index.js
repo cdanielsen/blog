@@ -12,38 +12,40 @@ class Layout extends React.Component {
 
     if (isIndexPage) {
       return (
-        <div
-          style={{
-            marginLeft: `auto`,
-            marginRight: `auto`,
-            maxWidth: rhythm(30),
-            padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-            display: `flex`,
-            flexDirection: `row`,
-          }}
-        >
+        <>
           <div
             style={{
-              flexGrow: 1,
-              paddingRight: `30px`,
-              borderRight: `0.5px solid`,
-              maxHeight: `500px`,
-              minWidth: `125px`,
+              marginLeft: `auto`,
+              marginRight: `auto`,
+              maxWidth: rhythm(30),
+              padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+              display: `flex`,
+              flexDirection: `row`,
             }}
           >
-            <NavSidebar />
-          </div>
+            <div
+              style={{
+                flexGrow: 1,
+                paddingRight: `30px`,
+                borderRight: `0.5px solid`,
+                maxHeight: `500px`,
+                minWidth: `125px`,
+              }}
+            >
+              <NavSidebar />
+            </div>
 
-          <div
-            style={{
-              flexGrow: 2,
-              paddingLeft: `50px`,
-            }}
-          >
-            <Header location={location} />
-            <main>{children}</main>
+            <div
+              style={{
+                flexGrow: 2,
+                paddingLeft: `50px`,
+              }}
+            >
+              <Header location={location} />
+              <main>{children}</main>
+            </div>
           </div>
-        </div>
+        </>
       )
     }
     return (

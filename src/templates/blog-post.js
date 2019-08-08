@@ -8,8 +8,6 @@ import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render() {
-    // eslint-disable-next-line
-    console.log(this.props.pageContext)
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
@@ -63,6 +61,14 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
+        <footer
+          style={{
+            textAlign: "center",
+            fontSize: "x-small",
+          }}
+        >
+          ©2019 Christian Danielsen. All Rights Reserved.
+        </footer>
       </Layout>
     )
   }
