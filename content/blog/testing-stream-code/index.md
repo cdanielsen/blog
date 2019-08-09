@@ -7,7 +7,7 @@ description: Things get weird
 
 In the last post, we talked about how nicely streams and promises play well together. We designed this simple function to demonstrate:
 
-```
+```js
 const streamToFile = (inputStream, filePath) => {
   return new Promise((resolve, reject) => {
     const fileWriteStream = fs.createWriteStream(filePath)
@@ -33,7 +33,7 @@ This function actually presents a couple of testing pitfalls that we will want t
 
 I've been using [jest](https://jestjs.io) to unit test lately. Here's where I might start with this test:
 
-```
+```js
 describe('streamToFile', () => {
   it('rejects with an error if a stream error occurs', async () => {
     await expect(streamToFile()).rejects.toEqual('ahoy!');
@@ -47,17 +47,18 @@ I also always put in a purposefully dumb assertion ('ahoy!') so that I know when
 
 This test will currently fail because we're not passing the correct arguments to `streamToFile`. Let's start fixing $#!+.
 
-```
+```js
 const { PassThrough } = require('stream')
 
 describe('streamToFile', () => {
-  it('rejects with an error if a stream error occurs', async () => {
+  it('rejects/errors if a stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockFilePath = '/oh/what/a/file.txt'
 
     // Act & Assert
-    await expect(streamToFile(mockReadable, mockFilePath)).rejects.toEqual('ahoy!')
+    await expect(streamToFile(mockReadable, mockFilePath))
+      .rejects.toEqual('ahoy!')
   })
 })
 ```
@@ -69,14 +70,14 @@ Now we've satisfied `streamToFile`'s signature with two things:
 
 Since we don't actually want to write any data to our fake file path, let's do the hijacking.
 
-```
+```js
 const fs = require('fs')
 const { PassThrough } = require('stream')
 
 jest.mock('fs')
 
 describe('streamToFile', () => {
-  it('rejects with an error if a stream error occurs', async () => {
+  it('rejects/errors if a stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockWriteable = new PassThrough()
@@ -84,7 +85,8 @@ describe('streamToFile', () => {
     fs.createWriteStream.mockReturnValueOnce(mockWriteable)
 
     // Act & Assert
-    await expect(streamToFile(mockReadable, mockFilePath)).rejects.toEqual('ahoy!')
+    await expect(streamToFile(mockReadable, mockFilePath))
+      .rejects.toEqual('ahoy!')
   })
 })
 ```
@@ -97,7 +99,7 @@ Now we've done three things:
 
 Now our code will no longer attempt to touch the file system, *and* we control/have references to the streams. Noice.
 
-Our test will now fail with a timeout because the `error` event is never called (we haven't emitted one).
+Our test will now fail with a timeout because the 'error' event is never called (we haven't emitted one).
 
 And this is where things get a little weird. Usually you just have one "Act" statement in a unit test - invoking the thing you're testing - but in this case we need two.
 
@@ -105,9 +107,9 @@ Invoking `streamToFile` hooks the streams up using [`.pipe`](https://nodejs.org/
 
 We're currently using the [await/expect combined syntax](https://jestjs.io/docs/en/asynchronous#async-await) to Act and Assert in the same line. Usually this is fine/terse/convenient, but in this case, not so much, because we want to do something *after* the promise has been created, but *before* it has settled. Let's separate those out.
 
-```
+```js
 describe('streamToFile', () => {
-  it('rejects with an error if a stream error occurs', async () => {
+  it('rejects/errors if a stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockWriteable = new PassThrough()
@@ -125,9 +127,9 @@ describe('streamToFile', () => {
 
 And now we can augment our "Act" section by emitting an error event.
 
-```
+```js
 describe('streamToFile', () => {
-  it('rejects with an error if a stream error occurs', async () => {
+  it('rejects/errors if a stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockWriteable = new PassThrough()
@@ -152,9 +154,9 @@ This *should* work consistently (and you do want deterministic, flake free tests
 
 That *will likely* be what happens, but it isn't deterministic. It's possible that the event could be emitted before the error event handler is registered, leading to a failed test with Jest complaining about an unhandled error event. This very likely wouldn't be an issue in the actual application, as emitting the events would likely occur *well after* the streams had been connected. As such, it's better to have our test model that likely flow (and eliminate the race condition), by using good old `setTimeout`.
 
-```
+```js
 describe('streamToFile', () => {
-  it('rejects with an error if a stream error occurs', async () => {
+  it('rejects/errors if a stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockWriteable = new PassThrough()
@@ -178,9 +180,9 @@ describe('streamToFile', () => {
 
 If we run this test we can see that it's *failing for the right reason*: remember that we gave it a dumb assertion on purpose at the very beginning. Now we can switch it out for the actual error and we have a test that proves streamToFile captures errors correctly.
 
-```
+```js
 describe('streamToFile', () => {
-  it('rejects with an error if a stream error occurs', async () => {
+  it('rejects/errors if a stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockWriteable = new PassThrough()
@@ -203,9 +205,9 @@ describe('streamToFile', () => {
 
 One of the many underrated benefits of writing tests is that you often end up discovering code paths (or catching bugs) you hadn't thought of while working through an implementation. In this case, the test above proves that our implementation will handle an error from the *writeable* stream, but what about if the *readable* stream emits an error. Will it propagate through to our error handler? Let's find out:
 
-```
+```js
 describe('streamToFile', () => {
-  it('rejects with an error if a READ stream error occurs', async () => {
+  it('rejects/errors if a READ stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockWriteable = new PassThrough()
@@ -223,7 +225,7 @@ describe('streamToFile', () => {
     await expect(actualPromise).rejects.toEqual(mockError)
   })
 
-  it('rejects with an error if a WRITE stream error occurs', async () => {
+  it('rejects/errors if a WRITE stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockWriteable = new PassThrough()
@@ -245,7 +247,7 @@ describe('streamToFile', () => {
 
 Now we have two tests: quite similar, but the first emits an error from the readable stream, while the second emits an error from the writeable one. The writeable one passes, the readable one does not! This is because each stream has its own error event, and `.pipe` says nothing about sending errors through to the next stream. If we want to catch (and then reject) from them both, we need to update our implementation and register an error event on the readable stream too.
 
-```
+```js
 const streamToFile = (inputStream, filePath) => {
   return new Promise((resolve, reject) => {
     const fileWriteStream = fs.createWriteStream(filePath)
@@ -258,7 +260,7 @@ const streamToFile = (inputStream, filePath) => {
 }
 
 describe('streamToFile', () => {
-  it('rejects with an error if a READ stream error occurs', async () => {
+  it('rejects/errors if a READ stream error occurs', async () => {
     // Arrange
     const mockReadable = new PassThrough()
     const mockWriteable = new PassThrough()
@@ -282,7 +284,7 @@ Now we're gracefully handling errors on the write AND read stream. Thanks, tests
 
 And now that we've tested the "sad" code paths, we can finally test the happy path: a successful run of `streamToFile`.
 
-```
+```js
 describe('streamToFile', () => {
   it('resolves if the data writes successfully', async () => {
     // Arrange
