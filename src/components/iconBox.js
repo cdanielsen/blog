@@ -1,5 +1,5 @@
 import React from "react"
-import { FaTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa"
+import { FaTwitter, FaGithub, FaLinkedinIn, FaRssSquare } from "react-icons/fa"
 import { IoIosPaperPlane } from "react-icons/io"
 
 export default function IconBox() {
@@ -17,6 +17,7 @@ export default function IconBox() {
         [FaGithub, "http://github.com/cdanielsen"],
         [FaLinkedinIn, "http://linkedin.com/in/christiandanielsen"],
         [IoIosPaperPlane, "mailto:ckdanielsen@gmail.com"],
+        [FaRssSquare, "https://www.hotmess.codes/rss.xml"],
       ].map((icon, idx) => (
         <a
           key={idx}
