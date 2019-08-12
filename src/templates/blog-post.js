@@ -5,6 +5,7 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import headshot from "../../content/assets/headshot.png"
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -23,12 +24,30 @@ class BlogPostTemplate extends React.Component {
         <p
           style={{
             ...scale(-1 / 5),
-            display: `block`,
+            display: `flex`,
+            flexDirection: `row`,
+            justifyContent: `flex-start`,
+            alignItems: `center`,
             marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
+            marginTop: rhythm(-0.5),
           }}
         >
-          {post.frontmatter.date} by {post.frontmatter.author}
+          <span
+            style={{
+              marginRight: `5px`,
+            }}
+          >
+            {post.frontmatter.date} by {post.frontmatter.author}
+          </span>
+          <img
+            src={headshot}
+            alt={`Christian Danielsen`}
+            style={{
+              display: `inline`,
+              width: rhythm(1.5),
+              height: rhythm(1.5),
+            }}
+          />
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr

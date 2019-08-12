@@ -4,7 +4,7 @@ module.exports = {
     masthead: `{} - [] === -0`,
     author: `Christian Danielsen`,
     description: `Evangalism from the JavaScript pulpit`,
-    siteUrl: `https://www.hotmess.codes/`,
+    siteUrl: `https://www.hotmess.codes`,
     social: {
       twitter: `CKDanielsen`,
     },
@@ -46,6 +46,7 @@ module.exports = {
             resolve: `gatsby-remark-prismjs`,
             options: {
               inlineCodeMarker: `>`,
+              noInlineHighlight: true,
             },
           },
         ],

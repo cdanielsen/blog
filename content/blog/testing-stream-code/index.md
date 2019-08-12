@@ -5,7 +5,7 @@ date: "2019-07-14T00:00:00.001Z"
 description: Things get weird
 ---
 
-In the last post, we talked about how nicely streams and promises play well together. We designed this simple function to demonstrate:
+In the [last post](/on-streams-and-promises), we talked about how nicely streams and promises play well together. We designed this simple function to demonstrate:
 
 ```js
 const streamToFile = (inputStream, filePath) => {

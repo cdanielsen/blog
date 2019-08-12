@@ -18,7 +18,7 @@ function Header({ location }) {
       }
     `
   )
-  const { masthead, description } = data.site.siteMetadata
+  const { masthead, description, title } = data.site.siteMetadata
   const rootPath = `${__PATH_PREFIX__}/`
   const indexHeader = (
     <header>
@@ -69,7 +69,7 @@ function Header({ location }) {
           }}
           to={`/`}
         >
-          {masthead}
+          {title}
         </Link>
       </h2>
     </header>
