@@ -3,6 +3,9 @@ title: On streams and promises
 author: "Christian"
 date: "2019-07-04T00:00:00.001Z"
 description: Why they belong together, and where to watch out
+splashUrl: https://source.unsplash.com/3aM_Gudf-M0/4752x3168
+splashAuthor: Marc Wieland
+splashAuthorUrl: https://unsplash.com/@marcwieland95
 ---
 
 I recently worked on a service that involved consuming large amounts of data, processing it in various ways, and then sending it somewhere else. This seemed like the perfect oppurtunity to dig into one of node's core concepts: [streams](https://nodejs.org/api/stream.html).

@@ -3,6 +3,9 @@ title: Begin
 author: "Christian"
 date: "2019-07-01T00:00:00.001Z"
 description: Why we're here
+splashUrl: https://source.unsplash.com/dWV57j2WO-s/4406x2938
+splashAuthor: Ronaldo de Oliveira
+splashAuthorUrl: https://unsplash.com/@ronaldordeoliveira
 ---
 
 > Market thyself

@@ -54,7 +54,7 @@ function Header({ location }) {
 
   const nonIndexHeader = (
     <header>
-      <h2
+      <h1
         style={{
           fontFamily: `Montserrat, sans-serif`,
           marginTop: 0,
@@ -71,7 +71,7 @@ function Header({ location }) {
         >
           {title}
         </Link>
-      </h2>
+      </h1>
     </header>
   )
 
