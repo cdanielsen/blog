@@ -8,7 +8,7 @@ splashAuthor: Marc Wieland
 splashAuthorUrl: https://unsplash.com/@marcwieland95
 ---
 
-I recently worked on a service that involved consuming large amounts of data, processing it in various ways, and then sending it somewhere else. This seemed like the perfect oppurtunity to dig into one of node's core concepts: [streams](https://nodejs.org/api/stream.html).
+I recently worked on a service that involved consuming large amounts of data, processing it in various ways, and then sending it somewhere else. This seemed like the perfect opportunity to dig into one of node's core concepts: [streams](https://nodejs.org/api/stream.html).
 
 [Streams](https://nodejs.org/api/process.html#process_process_stdout) [are](https://nodejs.org/api/http.html#http_class_http_incomingmessage) [everywhere](https://nodejs.org/api/fs.html#fs_fs_createreadstream_path_options) in node, and once you get the hang of using them, they are delightful. I found many [solid](https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/) [articles](https://flaviocopes.com/nodejs-streams/) that cover the basics, but I wanted to touch on something that came up while combining streams with another core node concept: [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
