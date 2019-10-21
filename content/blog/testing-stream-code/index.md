@@ -22,7 +22,7 @@ const streamToFile = (inputStream, filePath) => {
 }
 ```
 
-What would a good set of tests for this function look like and how would we write them? My mental model when I write unit tests is to think about the question "What is this function's job?" In this case, I'd say this function has two high level responsibilities/behaviors to verify:
+What would a good set of tests for this function look like and how would we write them? My general mental model when I write unit tests for a function is to think about the question "What is this function's job?" In this case, I'd say this function has two high level responsibilities/behaviors to verify:
 
  - Signal if the incoming data is streamed correctly
  - Error gracefully if not
@@ -39,16 +39,16 @@ I've been using [jest](https://jestjs.io) to unit test lately. Here's where I mi
 ```js
 describe('streamToFile', () => {
   it('rejects with an error if a stream error occurs', async () => {
-    await expect(streamToFile()).rejects.toEqual('ahoy!');
+    await expect(streamToFile()).rejects.toEqual('ahoy!')
   })
 })
 ```
 
 If all tests follow the classic stages of *Arrange, Act, Assert*, I like to [start at the end](https://en.wikipedia.org/wiki/Backward_design) with the Assert stage, to remind myself what I'm working toward, and to let the test runner give me a road map for what I need to fix.
 
-I also always put in a purposefully dumb assertion ('ahoy!') so that I know when I've got my test right because it's failing for the right reason (because false positives are... the worst). We'll update that at the very end to make it pass.
+I also always put in a purposefully dumb assertion (`ahoy!`) so that I know when I've got my test right because it's failing for the right reason (because false positives are... the worst). We'll update that at the very end to make it pass.
 
-This test will currently fail because we're not passing the correct arguments to `streamToFile`. Let's start fixing $#!+.
+This test will currently fail because we're not passing the correct arguments to `streamToFile`. Let's start fixing $#!+:
 
 ```js
 const { PassThrough } = require('stream')
@@ -69,9 +69,9 @@ describe('streamToFile', () => {
 Now we've satisfied `streamToFile`'s signature with two things:
 
  - `mockReadable` is a [PassThrough steam](https://nodejs.org/api/stream.html#stream_class_stream_passthrough). As the docs note, this is a very simple implementation of a [Transform stream](https://nodejs.org/api/stream.html#stream_class_stream_transform) that simply takes the input and passes it right through. It implements the Readable and Writeable APIs, making it very handy for testing.
- - `mockFilePath` is... a fake file path. When mocking, I think it's important to stick as close to what the actual code wants as possible, so your tests serve as documentation. In this case, we're going to use jest's [auto-mocking](https://jestjs.io/docs/en/manual-mocks#mocking-node-modules) feature to hijack the `fs.createWriteStream` method so we don't actually touch the file system. Since this doppelgänger won't actually be doing anything with the input, we could technically (obnoxiously?) pass that hijacked function whatever we want, but this way someone can look at the test and start to understand the ins and outs of the function under test.
+ - `mockFilePath` is... a fake file path. When mocking, I think it's important to stick as close to what the actual code wants as possible, so your tests also serve as documentation. In this case, we're going to use jest's [auto-mocking](https://jestjs.io/docs/en/manual-mocks#mocking-node-modules) feature to hijack the `fs.createWriteStream` method so we don't actually touch the file system. Since this doppelgänger won't actually be doing anything with the input, we could technically (obnoxiously?) pass that hijacked function whatever we want, but this way someone can look at the test and start to understand the ins and outs of the function under test.
 
-Since we don't actually want to write any data to our fake file path, let's do the hijacking.
+Since we don't actually want to write any data to our fake file path, let's do the hijacking:
 
 ```js
 const fs = require('fs')
@@ -98,17 +98,17 @@ Now we've done three things:
 
 - Use jest's automocking to replace all methods on the `fs` object with jest functions that do nothing and return `undefined` by default
 - Overridden that default behavior in this test by using the [`mockReturnValueOnce`](https://jestjs.io/docs/en/mock-function-api#mockfnmockreturnvalueoncevalue) method
-- Returning what our code would expect from `fs.createWriteStream`: something that implements the Writeable interface (another `PassThrough` stream!).
+- Returning what our code would expect from `fs.createWriteStream` : something that implements the `Writeable` interface (another `PassThrough` stream!).
 
 Now our code will no longer attempt to touch the file system, *and* we control/have references to the streams. Noice.
 
 Our test will now fail with a timeout because the 'error' event is never called (we haven't emitted one).
 
-And this is where things get a little weird. Usually you just have one "Act" statement in a unit test - invoking the thing you're testing - but in this case we need two.
+And this is where things get a little weird. Usually you just have one "Act" statement in a unit test - invoking the thing you're testing - but in this case we actually need two.
 
 Invoking `streamToFile` hooks the streams up using [`.pipe`](https://nodejs.org/api/stream.html#stream_readable_pipe_destination_options) but then we also need to emit an event to run something *through* those beautiful tubes (an error in this case).
 
-We're currently using the [await/expect combined syntax](https://jestjs.io/docs/en/asynchronous#async-await) to Act and Assert in the same line. Usually this is fine/terse/convenient, but in this case, not so much, because we want to do something *after* the promise has been created, but *before* it has settled. Let's separate those out.
+We're currently using the [await/expect combined syntax](https://jestjs.io/docs/en/asynchronous#async-await) to Act and Assert in the same line. Usually this is fine/terse/convenient, but in this case, not so much, because we want to do something *after* the promise has been created, but *before* it has settled. Let's separate those out:
 
 ```js
 describe('streamToFile', () => {
@@ -179,9 +179,9 @@ describe('streamToFile', () => {
 })
 ```
 
-100 milliseconds is a trivial delay in human time, but it's a small eternity for the event loop. This should guarantee that our event is emitted only after we've hooked up a listener for it.
+100 milliseconds is a trivial delay in human time, but it's a small eternity for the event loop. This should pretty much guarantee that our event is emitted only after we've hooked up a listener for it.
 
-If we run this test we can see that it's *failing for the right reason*: remember that we gave it a dumb assertion on purpose at the very beginning. Now we can switch it out for the actual error and we have a test that proves streamToFile captures errors correctly.
+If we run this test we can see that it's *failing for the right reason*: remember that we gave it a dumb assertion on purpose at the very beginning. Now we can switch it out for the actual error and we have a test that proves `streamToFile` captures errors correctly.
 
 ```js
 describe('streamToFile', () => {
@@ -243,12 +243,12 @@ describe('streamToFile', () => {
     }, 100)
 
     // Assert
-    await expect(actualPromise).rejects.toEqual(mockError);
+    await expect(actualPromise).rejects.toEqual(mockError)
   })
 })
 ```
 
-Now we have two tests: quite similar, but the first emits an error from the readable stream, while the second emits an error from the writeable one. The writeable one passes, the readable one does not! This is because each stream has its own error event, and `.pipe` says nothing about sending errors through to the next stream. If we want to catch (and then reject) from them both, we need to update our implementation and register an error event on the readable stream too.
+Now we have two tests: quite similar, but the first emits an error from the readable stream, while the second emits an error from the writeable one. The writeable one passes... but the readable one does not! This is because each stream has its own error event, and `.pipe` says nothing about sending errors through to the next stream. If we want to catch (and then reject) from them both, we need to update our implementation and register an error event on the readable stream too.
 
 ```js
 const streamToFile = (inputStream, filePath) => {
@@ -259,7 +259,7 @@ const streamToFile = (inputStream, filePath) => {
       .pipe(fileWriteStream)
       .on('finish', resolve)
       .on('error', reject)
-    })
+  })
 }
 
 describe('streamToFile', () => {
@@ -281,11 +281,12 @@ describe('streamToFile', () => {
     // Assert
     await expect(actualPromise).rejects.toEqual(mockError)
   })
+})
 ```
 
 Now we're gracefully handling errors on the write AND read stream. Thanks, tests!
 
-And now that we've tested the "sad" code paths, we can finally test the happy path: a successful run of `streamToFile`.
+And now that we've tested the 'sad' code paths, we can finally test the happy path - a successful run of `streamToFile`:
 
 ```js
 describe('streamToFile', () => {
@@ -309,6 +310,7 @@ describe('streamToFile', () => {
     // Assert
     await expect(actualPromise).resolves.toEqual(undefined)
   })
+})
 ```
 Note that we're not resolving the promise with a value, forcing us to assert - ick - on the default value of `undefined`. But perhaps this function would evolve to resolve with some useful value for further downstream work.
 

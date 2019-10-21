@@ -1,5 +1,5 @@
 ---
-title: Stream Pipelines
+title: Stream pipelines
 author: "Christian"
 date: "2019-10-17T00:00:00.001Z"
 description: Power move
@@ -8,7 +8,7 @@ splashAuthor: Tim Marshall
 splashAuthorUrl: https://unsplash.com/@timmarshall
 ---
 
-In the [last post](/testing-stream-code), we talked about how nicely streams and promises play well together. A rather awkward issue came up where we needed to register error event handlers on each individual stream in the pipeline:
+In the [last post](/testing-stream-code), we discussed testing a function that returns some promise-wrapped streams. A rather awkward issue came up where we needed to register error event handlers on each individual stream in the pipeline:
 
 ```js
 const streamToFile = (inputStream, filePath) => {
@@ -42,11 +42,11 @@ const cruftyStreamPipeline = () => {
       .pipe(finalDestinationStream)
       .on('error', reject)
       .on('finish', resolve)
-    })
+  })
 }
 
 // Wired
-const { pipeline } = require('stream');
+const { pipeline } = require('stream')
 
 const slimmerStreamPipeline = () => {
   return new Promise((resolve, reject) => {
@@ -55,13 +55,14 @@ const slimmerStreamPipeline = () => {
       someTransformStream,
       yetAnotherTransformStream,
       finalDestinationStream,
-    (err) => {
-      if (err) {
-        reject(err)
+      err => {
+        if (err) {
+          reject(err)
+        }
+        resolve()
       }
-      resolve()
-    })
-  }
+    )
+  })
 }
 
 ```
@@ -94,24 +95,22 @@ const streamToFile = (inputStream, filePath) => {
       .pipe(fileWriteStream)
       .on('finish', resolve)
       .on('error', reject)
-    })
+  })
 }
 
 // To this..
-const { promisify } = require('util');
-const { pipeline } = require('stream');
+const { promisify } = require('util')
+const { pipeline } = require('stream')
 
-const asnycPipeline = promisify(pipeline);
+const asnycPipeline = promisify(pipeline)
 
 const soHotRightNowStreamToFile = (inputStream, filePath) => {
   const fileWriteStream = fs.createWriteStream(filePath)
-  return asyncPipeline(
-    inputStream,
-    fileWriteStream
-);
+  return asyncPipeline(inputStream, fileWriteStream)
+}
 ```
 
-The benefits get more obvious as you add more streams. Even more awesome: in the event of an error, you should be doing cleanup of your streams because [they don't destroy themselves by default](https://nodejs.org/api/stream.html#stream_event_error). I almost never remember to do this, but stream.pipeline _does it for you_, calling `stream.destroy(err)` in the event an error is thrown on all the streams you gave it.
+The benefits get more obvious as you add more streams. Even more awesome: in the event of an error, you should be doing cleanup of your streams because [they don't destroy themselves by default](https://nodejs.org/api/stream.html#stream_event_error). I confess to almost never remembering to do this, but `stream.pipeline` _does it for you_, calling `stream.destroy(err)` in the event an error is thrown on all the streams you gave it.
 
 To me, this is a great abstraction. Get rid of all the boilerplate of catching errors, wrapping things up in promises, and proper clean up, and let me focus on writing my sweet, sweet custom transform streams.
 
