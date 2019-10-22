@@ -1,6 +1,14 @@
 import React from "react"
-import { FaTwitter, FaGithub, FaLinkedinIn, FaRssSquare } from "react-icons/fa"
+import {
+  FaTwitter,
+  FaGithub,
+  FaLinkedinIn,
+  FaRssSquare,
+  FaDev,
+} from "react-icons/fa"
 import { IoIosPaperPlane } from "react-icons/io"
+
+import arrayShuffle from "array-shuffle"
 
 export default function IconBox() {
   return (
@@ -10,18 +18,21 @@ export default function IconBox() {
         flexDirection: `row`,
         flexWrap: `wrap`,
         justifyContent: `space-around`,
+        paddingBottom: `20px`,
+        borderBottom: `0.5px solid`,
       }}
     >
-      {[
+      {arrayShuffle([
         [FaTwitter, "http://twitter.com/ckdanielsen"],
         [FaGithub, "http://github.com/cdanielsen"],
         [FaLinkedinIn, "http://linkedin.com/in/christiandanielsen"],
         [IoIosPaperPlane, "mailto:ckdanielsen@gmail.com"],
         [FaRssSquare, "https://www.hotmess.codes/rss.xml"],
-      ].map((icon, idx) => (
+        [FaDev, "https://dev.to/cdanielsen"],
+      ]).map(([icon, link], idx) => (
         <a
           key={idx}
-          href={icon[1]}
+          href={link}
           style={{
             boxShadow: `none`,
             textDecoration: `none`,
@@ -29,8 +40,8 @@ export default function IconBox() {
             padding: `5px`,
           }}
         >
-          {React.createElement(icon[0], {
-            size: `2rem`,
+          {React.createElement(icon, {
+            size: `1.75rem`,
           })}
         </a>
       ))}

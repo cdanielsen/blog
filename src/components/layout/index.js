@@ -25,9 +25,8 @@ class Layout extends React.Component {
           >
             <div
               style={{
-                flexGrow: 1,
-                paddingRight: `30px`,
-                borderRight: `0.5px solid`,
+                flexGrow: 2,
+                marginRight: `3rem`,
                 maxHeight: `500px`,
                 minWidth: `125px`,
               }}
@@ -37,8 +36,9 @@ class Layout extends React.Component {
 
             <div
               style={{
-                flexGrow: 2,
+                flexGrow: 3,
                 paddingLeft: `50px`,
+                borderLeft: `0.5px solid`,
               }}
             >
               <Header location={location} />

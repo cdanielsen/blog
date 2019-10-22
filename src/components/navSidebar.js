@@ -1,9 +1,23 @@
 import React from "react"
 import { Link } from "gatsby"
+import arrayShuffle from "array-shuffle"
 
 import IconBox from "./iconBox"
 import { rhythm } from "../utils/typography"
 import headShot from "../../content/assets/headshot.png"
+
+const coolPeople = arrayShuffle([
+  ["Jake Archibald", "https://www.jakearchibald.com"],
+  ["Flavio Copes", "https://flaviocopes.com/"],
+  ["Tania Rascia", "https://www.taniarascia.com/"],
+  ["Jim Fisher", "https://jameshfisher.com/"],
+  ["Dave Cedia", "https://daveceddia.com/"],
+  ["Julia Evans", "https://jvns.ca/"],
+  ["Sarah Drasner", "https://sarah.dev/"],
+  ["Juliette Pretot", "https://juliette.sh/"],
+  ["Vivki Boykis", "https://vicki.substack.com/"],
+  ["Sindre Sorhus", "https://sindresorhus.com/"],
+])
 
 export default function NavSidebar() {
   return (
@@ -46,6 +60,25 @@ export default function NavSidebar() {
           </Link>
         </h4>
         <IconBox />
+        <div
+          style={{
+            textAlign: `center`,
+          }}
+        >
+          <h4>Admirees</h4>
+          {coolPeople.map(([name, link], idx) => (
+            <div key={idx}>
+              <a
+                href={link}
+                style={{
+                  boxShadow: `none`,
+                }}
+              >
+                {name}
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
