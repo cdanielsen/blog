@@ -52,7 +52,6 @@ export default function NavSidebar() {
           <Link
             to="/about"
             style={{
-              boxShadow: `none`,
               margin: `0 auto`,
             }}
           >
@@ -68,14 +67,7 @@ export default function NavSidebar() {
           <h4>Admirees</h4>
           {coolPeople.map(([name, link], idx) => (
             <div key={idx}>
-              <a
-                href={link}
-                style={{
-                  boxShadow: `none`,
-                }}
-              >
-                {name}
-              </a>
+              <a href={link}>{name}</a>
             </div>
           ))}
         </div>

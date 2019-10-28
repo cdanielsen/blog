@@ -32,8 +32,6 @@ function Header({ location }) {
       >
         <Link
           style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
             color: `inherit`,
           }}
           to={`/`}
@@ -63,8 +61,6 @@ function Header({ location }) {
       >
         <Link
           style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
             color: `inherit`,
           }}
           to={`/`}

@@ -34,8 +34,6 @@ export default function IconBox() {
           key={idx}
           href={link}
           style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
             color: `inherit`,
             padding: `5px`,
           }}

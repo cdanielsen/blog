@@ -6,3 +6,8 @@ ul {
   margin-block-start: 10px;
   padding-inline-start: 20px;
 }
+
+a {
+  text-decoration: none;
+  box-shadow: none;
+}

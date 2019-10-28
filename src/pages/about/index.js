@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Link } from "gatsby"
 
 import Layout from "../../components/layout"
 import { rhythm } from "../../utils/typography"
@@ -24,13 +25,21 @@ export default function AboutPage({ location }) {
         I&apos;m Christian Danielsen, a web developer working remotely in Hood
         River, OR
       </p>
-
       <p>
         Some things I&apos;m into: JavaScript (particularly node.js), the art of
         writing tests, continuous everything, and working on teams with a
         diverse group of people.
       </p>
       <p>
+        Here are my evolving list of <Link to="/resume">credentials</Link>.
+      </p>
+      <p>
+        Please feel free to get in touch by sending me an{" "}
+        <a href="mailto:ckdanielsen@gmail.com?subject=Ahoy, Christian!">
+          electronic mail.
+        </a>
+      </p>
+      <div>
         <h3>(In)Frequently Asked Questions:</h3>
         <p>
           <strong>Q: HotMess?</strong>
@@ -51,7 +60,7 @@ export default function AboutPage({ location }) {
           enamored with the masthead expression (which evaluates to true in JS),
           that I{"'"}m considering getting a tattoo of it.
         </p>
-      </p>
+      </div>
     </Layout>
   )
 }
