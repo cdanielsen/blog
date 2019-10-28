@@ -8,7 +8,7 @@ import { rhythm } from "../../utils/typography"
 class Layout extends React.Component {
   render() {
     const isIndexPage = this.props.location.pathname === `${__PATH_PREFIX__}/`
-    const { location, children } = this.props
+    const { location, children, includeHeader = true } = this.props
 
     if (isIndexPage) {
       return (
@@ -57,7 +57,7 @@ class Layout extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
-        <Header location={location} />
+        {includeHeader && <Header location={location} />}
         <main>{children}</main>
       </div>
     )
@@ -69,4 +69,5 @@ export default Layout
 Layout.propTypes = {
   location: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
+  includeHeader: PropTypes.bool,
 }
