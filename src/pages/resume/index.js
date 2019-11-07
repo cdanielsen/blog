@@ -10,6 +10,7 @@ const {
   technicalSkills,
   essentialSkills,
   education,
+  personalInterests,
 } = credentials
 
 export default function ResumePage({ location }) {
@@ -34,10 +35,12 @@ export default function ResumePage({ location }) {
       <h3>Web Development Experience</h3>
       {webdevExperience.map((role, idx) => (
         <div key={idx}>
-          <strong>{role.title}</strong>
+          <strong>
+            {role.title} - {role.company}
+          </strong>
           <br />
           <em>
-            {role.company} ({role.startDate} - {role.endDate})
+            {role.location} ({role.startDate} - {role.endDate})
           </em>
           <ul>
             {role.highlights.map((highlight, idx) => {
@@ -56,6 +59,8 @@ export default function ResumePage({ location }) {
             {duration ? ` (${duration})` : ""}, {institution}, {location}
           </p>
         ))}
+      <h3>Personal Interests</h3>
+      <p>{personalInterests.join(" | ")}</p>
     </Layout>
   )
 }
