@@ -31,14 +31,13 @@ export default function AboutPage({ location }) {
         diverse group of people.
       </p>
       <p>
-        Here are some of my <Link to="/resume">credentials</Link>.
-      </p>
-      <p>
-        Please feel free to get in touch by sending me an{" "}
+        Here are some of my <Link to="/resume">credentials</Link>. Please feel
+        free to{" "}
         <a href="mailto:ckdanielsen@gmail.com?subject=Ahoy, Christian!">
-          electronic mail.
+          get in touch!
         </a>
       </p>
+
       <div>
         <h3>(In)Frequently Asked Questions:</h3>
         <p>
