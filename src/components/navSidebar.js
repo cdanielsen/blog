@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import arrayShuffle from "array-shuffle"
 
@@ -6,20 +6,26 @@ import IconBox from "./iconBox"
 import { rhythm } from "../utils/typography"
 import headShot from "../../content/assets/headshot.png"
 
-const coolPeople = arrayShuffle([
-  ["Jake Archibald", "https://www.jakearchibald.com"],
-  ["Flavio Copes", "https://flaviocopes.com/"],
-  ["Tania Rascia", "https://www.taniarascia.com/"],
-  ["Jim Fisher", "https://jameshfisher.com/"],
-  ["Dave Cedia", "https://daveceddia.com/"],
-  ["Julia Evans", "https://jvns.ca/"],
-  ["Sarah Drasner", "https://sarah.dev/"],
-  ["Juliette Pretot", "https://juliette.sh/"],
-  ["Vivki Boykis", "https://vicki.substack.com/"],
-  ["Sindre Sorhus", "https://sindresorhus.com/"],
-])
-
 export default function NavSidebar() {
+  const coolPeopleInitial = [
+    ["Jake Archibald", "https://www.jakearchibald.com"],
+    ["Flavio Copes", "https://flaviocopes.com/"],
+    ["Tania Rascia", "https://www.taniarascia.com/"],
+    ["Jim Fisher", "https://jameshfisher.com/"],
+    ["Dave Cedia", "https://daveceddia.com/"],
+    ["Julia Evans", "https://jvns.ca/"],
+    ["Sarah Drasner", "https://sarah.dev/"],
+    ["Juliette Pretot", "https://juliette.sh/"],
+    ["Vivki Boykis", "https://vicki.substack.com/"],
+    ["Sindre Sorhus", "https://sindresorhus.com/"],
+  ]
+
+  const [coolPeopleRandom, setCoolPeople] = useState(coolPeopleInitial)
+
+  useEffect(() => {
+    setCoolPeople(arrayShuffle(coolPeopleRandom))
+  }, [])
+
   return (
     <div
       style={{
@@ -65,8 +71,8 @@ export default function NavSidebar() {
           }}
         >
           <h4>Admirees</h4>
-          {coolPeople.map(([name, link], idx) => (
-            <div key={idx}>
+          {coolPeopleRandom.map(([name, link]) => (
+            <div key={name + link}>
               <a href={link}>{name}</a>
             </div>
           ))}
