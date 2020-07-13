@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import {
   FaTwitter,
   FaGithub,
@@ -11,6 +11,21 @@ import { IoIosPaperPlane } from "react-icons/io"
 import arrayShuffle from "array-shuffle"
 
 export default function IconBox() {
+  const iconsInitial = [
+    [FaTwitter, "http://twitter.com/ckdanielsen"],
+    [FaGithub, "http://github.com/cdanielsen"],
+    [FaLinkedinIn, "http://linkedin.com/in/christiandanielsen"],
+    [IoIosPaperPlane, "mailto:ckdanielsen@gmail.com"],
+    [FaRssSquare, "https://www.hotmess.codes/rss.xml"],
+    [FaDev, "https://dev.to/cdanielsen"],
+  ]
+
+  const [icons, setIcons] = useState(iconsInitial)
+
+  useEffect(() => {
+    setIcons(arrayShuffle(icons))
+  }, [])
+
   return (
     <div
       style={{
@@ -22,14 +37,7 @@ export default function IconBox() {
         borderBottom: `0.5px solid`,
       }}
     >
-      {arrayShuffle([
-        [FaTwitter, "http://twitter.com/ckdanielsen"],
-        [FaGithub, "http://github.com/cdanielsen"],
-        [FaLinkedinIn, "http://linkedin.com/in/christiandanielsen"],
-        [IoIosPaperPlane, "mailto:ckdanielsen@gmail.com"],
-        [FaRssSquare, "https://www.hotmess.codes/rss.xml"],
-        [FaDev, "https://dev.to/cdanielsen"],
-      ]).map(([icon, link], idx) => (
+      {icons.map(([icon, link], idx) => (
         <a
           key={idx}
           href={link}
