@@ -53,8 +53,10 @@ export default {
       label: "Languages and Frameworks",
       content: [
         "Modern JavaScript",
+        "TypeScript",
         "Node.js",
         "Express.js",
+        "Vue/Vuex",
         "React/Redux",
         "GraphQL",
         "PostgreSQL",
@@ -75,7 +77,7 @@ export default {
     },
     {
       label: "Tooling and DevOps",
-      content: ["Git/Gitflow", "Docker", "Jenkins", "TeamCity"],
+      content: ["Git/Gitflow", "Docker", "Jenkins", "TeamCity", "AWS"],
     },
     {
       label: "Workflow",
@@ -99,38 +101,39 @@ export default {
       startDate: "June 2018",
       endDate: "Present",
       highlights: [
-        "Led development of multiple robustly tested microservices (Node, Express, Jest), implementing best practices in areas including validation, authentication, and REST API design",
-        "Led implementation of a comprehensive suite of 300+ UI automation tests for an enterprise level cloud storage platform, resulting in dramatic improvements in test reliability, performance, and maintainability",
-        "Created code generation templates (Yeoman) for several common project types, dramatically reducing time required to jumpstart new projects",
-        "Currently championing a critical tooling improvement: establishing a binary repository manager for capturing common functionality into packages that can be shared across projects and teams",
+        "Currently implementing UI features and bug fixes for a media analysis application (Vue, vuex, cypress.io)",
+        "Led development of multiple robustly tested microservices (Node, Express, Jest), implementing best practices in areas including validation, caching, authentication, and REST API design",
+        "Championed continuous reflection and improvement of QA process across two teams, from implementing first-class automated tests to introducing black-box / exploratory testing into development cycle",
+        "Led overhaul of an application's local development setup (Docker, docker-compose, nginx) to create an easily reproducible and more production-like system",
+        "Led implementation of a comprehensive suite of UI automation tests (Cypress.io) across two different applications (500+ tests), resulting in dramatic improvements in test reliability, performance, and maintainability",
       ],
     },
     {
-      company: "InComm",
+      company: "Incomm",
       location: "Portland, OR",
       title: "Software Engineer in Test",
       startDate: "May 2016",
       endDate: "May 2018",
       highlights: [
+        "Worked directly with front end engineers to implement a modern user interface for an internal admin application (React, Redux, Jest)",
         "Transitioned to leadership role in the extension, maintenance and integration of automated UI and API testing frameworks. Reduced weekly regression testing time from days to hours",
-        "Led effort to standardize and implement modern JavaScript project best practices across a suite of front end development products",
-        "Contributed to a continuous delivery pipeline prototype providing for safe, automated deployments of a microservice to production on the merging of a pull request",
-        "Developed automated feature branch validation system by integrating VC host (GitHub) and CI tool (TeamCity)",
+        "Contributed to a continuous delivery pipeline infrastructure-as-code prototype, providing for safe, automated deployments of a microservice to production on the merging of a pull request",
+        "Developed feature branch validation system via VCS host (GitHub) and CI tool (TeamCity)",
         "Provided training, code reviews and mentorship to new QA engineers",
       ],
     },
     {
-      company: "InComm",
+      company: "Incomm",
       location: "Portland, OR",
       title: "Associate QA Engineer",
       startDate: "December 2014",
       endDate: "May 2016",
       highlights: [
-        "Collaborated with senior SDET to build end-to-end automated UI testing framework (Protractor) for customer and internal-facing applications",
+        "Collaborated with senior SDET to build an end-to-end automated UI testing repository (Protractor) for customer and internal-facing applications",
         "Designed API testing framework using npm libraries (Ava, Request-Promise, Yeoman) and custom JavaScript to dramatically improve API layer test coverage",
         "Daily experience with an agile sprint development cycle and associated processes/tools",
         "Conducted increasingly complex exploratory test sessions for bug and feature stories as a QA member of an 8-person cross functional product team",
-        "Contributed regular input and added value to regular agile ceremonies and other specialized working groups",
+        "Active contributor to regular agile ceremonies and other specialized working groups",
       ],
     },
     {
@@ -149,24 +152,27 @@ export default {
   communityContributions: [
     {
       type: "event",
+      year: "2018 / 2019",
       title: "Hack the Dot",
       role: "Lead Organizer",
       location: "Portland, OR",
       description:
-        "Planned and coordinated a beginner friendly one-night hackathon around building a website for a mystery domain name",
+        "Planned and coordinated three beginner friendly one-night hackathons around building a website for a mystery domain name",
     },
     {
       type: "talk",
+      year: "2018",
       title: "Front End PDX",
-      role: "speaker",
+      role: "Speaker",
       location: "Portland, OR",
       description:
         "Prepared and gave a detailed presentation on using tooling to create deterministic dependency trees for JavaScript projects",
     },
     {
       type: "workshop",
+      year: "2018",
       title: "ACT-W Portland",
-      role: "instructor",
+      role: "Instructor",
       location: "Portland, OR",
       description:
         "Prepared and gave a detailed tutorial on testing web applications with cypress.io",
