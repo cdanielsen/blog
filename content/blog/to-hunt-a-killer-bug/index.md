@@ -12,7 +12,7 @@ This website has a bug - a nasty one. Well, it had one ([I fixed it](https://git
 
 My first professional job in development was as a QA engineer. QA seems to hold an odd place in the world of development. Almost everyone recognizes it as essential, but not many people seem to like doing it, or giving enough resources to people who do like doing it. As such, they usually get sub-optimal value out of it until they realize they really need it, and then it's probably too late.
 
-So what does QA add to an overall development process? I would put it that as a QA engineer, your job is, basically, to try and break things. To look at some code, a UI, whatever is being built to put out in the world, and to ask things like "how could this go wrong?" and "As a user, why would I hate this?"
+So what does QA add to an overall development process? I would put it that as a QA engineer, your job is, basically, to try and break things. To look at some code, a UI, whatever is being built to be put out in the world, and to ask things like "how could this go wrong?" and "As a user, why would I hate this?"
 
 This can be an insanely creative exercise that counter-intuitively often requires very little technical knowledge. That can actually be a distraction, because usually your job is to advocate for requirements and behaviors that matter to _end users_, who are often non-technical, and very much don't care about the clever implementation details. They just want that button to do what they expect when they click it.
 
@@ -26,11 +26,11 @@ When I thought about what I wanted to put on this blog, I liked the idea of an o
 
 I initially just organized the list alphabetically by last name. But then I thought, why not randomize the order they appear each time, so Jake Archibald (who I do admire very much!) doesn't get an implicit preference of always being at the top of the list. I grabbed an array randomizing package from npm and worked it in as part of the React component that renders the names and links.
 
-Worked great locally! On each refresh I saw the names pleasingly reordered each time the page loaded. _Such clever UX_ I probably thought. (_Narrator: but he wasn't clever..._) And then I noticed the other day - to my horror - months after deploying this change, that on an initial load in the production site only _the links didn't match up with the names_.
+Worked great locally! On each refresh I saw the names pleasingly reordered each time the page loaded. _Such clever UX_ I probably thought (_narrator: but he wasn't clever..._) And then I noticed the other day - to my horror - months after deploying this change, that on an initial load in the production site only... _the links didn't match up with the names_.
 
 :scream:
 
-### Aftermath Questions:
+### Postmortem
 
 **Why did this work locally but not on the deployed site?**
 
