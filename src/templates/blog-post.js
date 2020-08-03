@@ -110,7 +110,8 @@ class BlogPostTemplate extends React.Component {
               fontSize: "x-small",
             }}
           >
-            ©2019 Christian Danielsen. All Rights Reserved.
+            ©{new Date().getFullYear()} Christian Danielsen. All Rights
+            Reserved.
           </footer>
         </div>
       </Layout>
