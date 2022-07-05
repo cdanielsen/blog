@@ -6,7 +6,7 @@ export default {
     {
       type: "degree",
       title: "BA, International Relations",
-      institution: "UC Davis",
+      institution: "University of California, Davis",
       location: "Davis, CA",
       date: 2005,
     },
@@ -43,10 +43,11 @@ export default {
     },
   ],
   essentialSkills: [
-    "Efficient researcher",
+    "Efficient researcher and autodidact",
     "Constant and humble learner",
     "Skilled communicator across mediums and audience types",
     "Strong interpersonal skills",
+    "Empathetic and dedicated mentor",
   ],
   technicalSkills: [
     {
@@ -88,12 +89,41 @@ export default {
         "Confluence",
         "Bitbucket",
         "GitHub",
-        "PivotalTracker",
         "Trello",
       ],
     },
   ],
   webdevExperience: [
+    {
+      company: "New Relic",
+      location: "Remote",
+      title: "Senior Software Engineer",
+      startDate: "October 2021",
+      endDate: "Present",
+      highlights: [
+        "Leading frontend development efforts on a team developing rich features to help New Relic users understand their data consumption, retention and limits",
+        "Communicate frequently with product owner, engineering manager, designer and other key organizational stakeholders to draft early stage features, create high level design documents and engineering-ready tickets",
+        "Coordinate engineering task distribution among team members, conduct frequent checkins to assess progress or blockers, and provide detailed code reviews and mentoring to drive features to release",
+        "Participate in a regular on-call pager rotation to triage and mitigate production system incidents",
+        "Identify critical technical debt and other opportunities for refactoring, and integrate this work into the development cadence to ensure codebases stay up to date and nimble",
+        "Budget time for innovation and industry best practices review to explore leading opportunities for improvement to development process and experience",
+      ],
+    },
+    {
+      company: "New Relic",
+      location: "Remote",
+      title: "Software Engineer",
+      startDate: "October 2020",
+      endDate: "October, 2021",
+      highlights: [
+        "Collaborated within a small team of full stack engineers to deliver polished user interfaces (React, TypeScript) to help users understand their New Relic data consumption, retention and limits",
+        "Led development of several large features by delivering incremental value during development via vertical slices of work, communicating regularly with key stakeholders to keep expectations aligned, and distributing work efficiently",
+        "Onboarded quickly to a different team for a two month assignment to help them deliver a critical UI feature for an on-time launch",
+        "Championed tooling and process improvements, including improving automated test coverage and incorporating organized bug bashes into large feature development guidelines",
+        "Provided mentorship to junior engineers in the form of code reviews and pair programming",
+        "Wrote internal technical documentation around features, team processes and tech debt reduction to inform stakeholders and broaden impact of work beyond team",
+      ],
+    },
     {
       company: "Insitu",
       location: "Remote",
@@ -134,18 +164,6 @@ export default {
         "Daily experience with an agile sprint development cycle and associated processes/tools",
         "Conducted increasingly complex exploratory test sessions for bug and feature stories as a QA member of an 8-person cross functional product team",
         "Active contributor to regular agile ceremonies and other specialized working groups",
-      ],
-    },
-    {
-      company: "Outdoor Project",
-      location: "Portland, OR",
-      title: "Frontend Web Development Intern",
-      startDate: "October 2014",
-      endDate: "November 2014",
-      highlights: [
-        "Contributed to mobile-friendly refactor of CSS code using Sass/SMACCS",
-        "Studied fundamentals of Drupal 7 CMS",
-        "Developed style guide demonstrating standards for common modules",
       ],
     },
   ],
