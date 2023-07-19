@@ -12,6 +12,30 @@ a {
   box-shadow: none;
 }
 
+.resume__education-training__header {
+  margin-top: 2.5rem;
+}
+
 .resume__education-training__item {
   margin-bottom: 14px;
+}
+
+.resume__contributions__header {
+  margin-top: 2.5rem;
+}
+
+.resume__contributions__item {
+  margin-bottom: 14px;
+}
+
+.resume__personal__header {
+  margin-top: 2.5rem;
+}
+
+.resume__personal__item {
+  margin-bottom: 14px;
+}
+
+.resume__experience__item {
+  margin-bottom: 8px;
 }

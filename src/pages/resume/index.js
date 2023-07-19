@@ -54,7 +54,11 @@ export default function ResumePage({ location }) {
           </em>
           <ul>
             {role.highlights.map((highlight, idx) => {
-              return <li key={idx}>{highlight}</li>
+              return (
+                <li key={idx} className="resume__experience__item">
+                  {highlight}
+                </li>
+              )
             })}
           </ul>
         </div>
@@ -62,7 +66,9 @@ export default function ResumePage({ location }) {
       {/*
         EDUCATION & TRAINING
       */}
-      <h3>Education & Training</h3>
+      <h3 className="resume__education-training__header">
+        Education & Training
+      </h3>
       {[...education.sort(({ date1 }, { date2 }) => date1 - date2)].map(
         ({ date, duration, institution, location, title }, idx) => (
           <p key={idx + title} className="resume__education-training__item">
@@ -74,11 +80,11 @@ export default function ResumePage({ location }) {
       {/*
         COMMUNITY CONTRIBUTIONS
       */}
-      <h3>Community Contributions</h3>
+      <h3 className="resume__contributions__header">Community Contributions</h3>
       {communityContributions.map(
         ({ role, title, location, description, year }) => (
           <>
-            <p key={title}>
+            <p key={title} className="resume__contributions__item">
               <strong>
                 {role}, {title} ({year} - {location})
               </strong>
@@ -91,8 +97,8 @@ export default function ResumePage({ location }) {
       {/*
         PERSONAL INTERESTS
       */}
-      <h3>Personal Interests</h3>
-      <p>{personalInterests.join(" | ")}</p>
+      <h3 className="resume__personal__header">Personal Interests</h3>
+      <p className="resume__personal__item">{personalInterests.join(" | ")}</p>
     </Layout>
   )
 }

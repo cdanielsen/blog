@@ -211,7 +211,7 @@ export default {
   ],
   personalInterests: [
     "Long Distance Backpacking",
-    "Highly amateur carpentry",
+    "Highly Amateur Carpentry",
     "High Risk Juggling",
   ],
 }
