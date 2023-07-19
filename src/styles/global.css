@@ -11,3 +11,7 @@ a {
   text-decoration: none;
   box-shadow: none;
 }
+
+.resume__education-training__item {
+  margin-bottom: 14px;
+}

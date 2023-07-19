@@ -22,7 +22,7 @@ export default function ResumePage({ location }) {
       {/*
         TECHNICAL SKILLS
       */}
-      <h3>Technical Skills</h3>
+      <h3>Technical Skills & Experience</h3>
       {technicalSkills.map(({ label, content }, idx) => (
         <p key={idx}>
           <strong>{label}</strong>
@@ -63,15 +63,14 @@ export default function ResumePage({ location }) {
         EDUCATION & TRAINING
       */}
       <h3>Education & Training</h3>
-      {education
-        .sort(({ date1 }, { date2 }) => date1 - date2)
-        .reverse()
-        .map(({ date, duration, institution, location, title }, idx) => (
-          <p key={idx + title}>
+      {[...education.sort(({ date1 }, { date2 }) => date1 - date2)].map(
+        ({ date, duration, institution, location, title }, idx) => (
+          <p key={idx + title} className="resume__education-training__item">
             {date} - {title}
             {duration ? ` (${duration})` : ""}, {institution}, {location}
           </p>
-        ))}
+        )
+      )}
       {/*
         COMMUNITY CONTRIBUTIONS
       */}
