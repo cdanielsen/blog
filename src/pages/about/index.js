@@ -22,13 +22,13 @@ export default function AboutPage({ location }) {
       <p></p>
       <h3>Hello!</h3>
       <p>
-        I&apos;m Christian Danielsen, a web developer working remotely in Hood
-        River, OR
+        I&apos;m Christian Danielsen, a web developer working remotely in
+        beautiful Oregon
       </p>
       <p>
-        Some things I&apos;m into: JavaScript (particularly node.js), the art of
-        writing tests, continuous everything, and working on teams with a
-        diverse group of people.
+        Some things I&apos;m into: JavaScript/TypeScript, the art of writing
+        tests, continuous everything, and working on teams with a diverse group
+        of people.
       </p>
       <p>
         Here are some of my <Link to="/resume">credentials</Link>. Please feel
@@ -44,9 +44,10 @@ export default function AboutPage({ location }) {
           <strong>Q: HotMess?</strong>
         </p>
         <p>
-          A: I hiked the Pacific Crest Trail in 2010. On a long trail, it{"'"}s
-          a tradition to adopt an alter ego (a trail name). My propensity for
-          misplacing things landed me the title of {"'"}HotMess{"'"}.
+          A: I hiked the <a href="https://www.pcta.org">Pacfic Crest Trail</a>{" "}
+          in 2010. On a long trail, it{"'"}s a tradition to adopt an alter ego
+          (a trail name). My propensity for misplacing things landed me the
+          title of {"'"}HotMess{"'"}.
         </p>
         <p>
           <strong>Q: What{"'"}s with the masthead?</strong>

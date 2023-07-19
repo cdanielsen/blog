@@ -52,7 +52,8 @@ export default function NavSidebar() {
         <h4
           style={{
             textAlign: `center`,
-            marginTop: `47px`,
+            marginTop: `14px`,
+            marginBottom: `14px`,
           }}
         >
           <Link
@@ -61,7 +62,23 @@ export default function NavSidebar() {
               margin: `0 auto`,
             }}
           >
-            Who Dis?
+            This Guy
+          </Link>
+        </h4>
+        <h4
+          style={{
+            textAlign: `center`,
+            marginTop: `14px`,
+            marginBottom: `14px`,
+          }}
+        >
+          <Link
+            to="/resume"
+            style={{
+              margin: `0 auto`,
+            }}
+          >
+            Resume
           </Link>
         </h4>
         <IconBox />
