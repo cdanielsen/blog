@@ -12,12 +12,16 @@ const {
   education,
   communityContributions,
   personalInterests,
+  contactInformation,
 } = credentials
+
+// Can use this for shorter resume, rather than CV
+const MAX_NUMBER_RECENT_EXPERIENCE = 4
 
 export default function ResumePage({ location }) {
   return (
     <Layout location={location} includeHeader={false}>
-      <h1 style={{ marginTop: 15, marginBottom: 15 }}>Christian Danielsen</h1>
+      <h1 style={{ marginTop: 10, marginBottom: 15 }}>Christian Danielsen</h1>
       <p>{tagLine}</p>
       {/*
         TECHNICAL SKILLS
@@ -43,40 +47,44 @@ export default function ResumePage({ location }) {
         DEV EXPERIENCE
       */}
       <h3>Development Experience</h3>
-      {webdevExperience.map((role, idx) => (
-        <div key={idx}>
-          <strong>
-            {role.title} - {role.company}
-          </strong>
-          <br />
-          <em>
-            {role.location} ({role.startDate} - {role.endDate})
-          </em>
-          <ul>
-            {role.highlights.map((highlight, idx) => {
-              return (
-                <li key={idx} className="resume__experience__item">
-                  {highlight}
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      ))}
+      {webdevExperience
+        .map((role, idx) => (
+          <div key={idx}>
+            <strong>
+              {role.title} - {role.company}
+            </strong>
+            <br />
+            <em>
+              {role.location} ({role.startDate} - {role.endDate})
+            </em>
+            <ul>
+              {role.highlights.map((highlight, idx) => {
+                return (
+                  <li key={idx} className="resume__experience__item">
+                    {highlight}
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        ))
+        .slice(0, MAX_NUMBER_RECENT_EXPERIENCE)}
       {/*
         EDUCATION & TRAINING
       */}
       <h3 className="resume__education-training__header">
         Education & Training
       </h3>
-      {[...education.sort(({ date1 }, { date2 }) => date1 - date2)].map(
-        ({ date, duration, institution, location, title }, idx) => (
-          <p key={idx + title} className="resume__education-training__item">
-            {date} - {title}
-            {duration ? ` (${duration})` : ""}, {institution}, {location}
-          </p>
-        )
-      )}
+      {[
+        ...education.sort(
+          ({ date: nextDate }, { date: currentDate }) => currentDate - nextDate
+        ),
+      ].map(({ date, duration, institution, location, title }, idx) => (
+        <p key={idx + title} className="resume__education-training__item">
+          {date} - {title}
+          {duration ? ` (${duration})` : ""}, {institution}, {location}
+        </p>
+      ))}
       {/*
         COMMUNITY CONTRIBUTIONS
       */}
@@ -99,6 +107,11 @@ export default function ResumePage({ location }) {
       */}
       <h3 className="resume__personal__header">Personal Interests</h3>
       <p className="resume__personal__item">{personalInterests.join(" | ")}</p>
+      {/*
+        CONTACT
+      */}
+      <h3 className="resume__personal__header">Contact</h3>
+      <p className="resume__personal__item">{contactInformation.join(" | ")}</p>
     </Layout>
   )
 }
