@@ -23,7 +23,7 @@ export default function AboutPage({ location }) {
       <h3>Hello!</h3>
       <p>
         I&apos;m Christian Danielsen, a web developer working remotely in
-        beautiful Oregon
+        beautiful Oregon.
       </p>
       <p>
         Some things I&apos;m into: JavaScript/TypeScript, the art of writing
