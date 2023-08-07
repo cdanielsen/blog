@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import credentials from "./resumeContent"
+import credentials from "../../data/resumeContent"
 import Layout from "../../components/layout"
 
 const {
