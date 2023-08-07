@@ -16,7 +16,7 @@ const {
 } = credentials
 
 // Can use this for shorter resume, rather than CV
-const MAX_NUMBER_RECENT_EXPERIENCE = 4
+const MAX_NUMBER_RECENT_EXPERIENCE = 6
 
 export default function ResumePage({ location }) {
   return (
