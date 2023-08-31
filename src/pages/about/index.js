@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 
 import Layout from "../../components/layout"
 import { rhythm } from "../../utils/typography"
@@ -31,8 +30,11 @@ export default function AboutPage({ location }) {
         of people.
       </p>
       <p>
-        Here are some of my <Link to="/resume">credentials</Link>. Please feel
-        free to{" "}
+        Here are some of my{" "}
+        <a href="/resume.pdf" target="_blank">
+          credentials
+        </a>
+        . Please feel free to{" "}
         <a href="mailto:ckdanielsen@gmail.com?subject=Ahoy, Christian!">
           get in touch!
         </a>

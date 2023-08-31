@@ -72,14 +72,15 @@ export default function NavSidebar() {
             marginBottom: `14px`,
           }}
         >
-          <Link
-            to="/resume"
+          <a
+            href="/resume.pdf"
+            target="_blank"
             style={{
               margin: `0 auto`,
             }}
           >
             Resume
-          </Link>
+          </a>
         </h4>
         <IconBox />
         <div
