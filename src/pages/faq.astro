@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro"
 
 <Layout title="FAQ">
   <section class="faq">
-    <h1>FAQ</h1>
+    <h1 class="label">// faq</h1>
     <p class="intro">Frequently asked questions</p>
     <dl>
       <div class="item">
@@ -44,13 +44,8 @@ import Layout from "../layouts/Layout.astro"
   .faq {
     margin-top: 56px;
   }
-  h1 {
-    margin: 0;
-    font-size: clamp(34px, 6vw, 48px);
-    letter-spacing: -0.025em;
-  }
   .intro {
-    margin: 12px 0 40px;
+    margin: 0 0 32px;
     color: var(--muted);
   }
   dl {

@@ -11,7 +11,7 @@ const entries = ADMIREES.map(([name, href]) => ({
 
 <Layout title="Admirees">
   <section class="admirees">
-    <h1>Admirees</h1>
+    <h1 class="label">// admirees</h1>
     <p class="intro">Some other people whose writing I admire</p>
     <ul data-shuffle>
       {entries.map(({ name, href, host }) => (
@@ -38,13 +38,8 @@ const entries = ADMIREES.map(([name, href]) => ({
   .admirees {
     margin-top: 56px;
   }
-  h1 {
-    margin: 0;
-    font-size: clamp(34px, 6vw, 48px);
-    letter-spacing: -0.025em;
-  }
   .intro {
-    margin: 12px 0 40px;
+    margin: 0 0 32px;
     color: var(--muted);
   }
   ul {
