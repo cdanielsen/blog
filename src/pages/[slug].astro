@@ -49,7 +49,6 @@ const { Content } = await render(post)
         <img src={splashUrl} alt="" />
         {splashAuthor && (
           <figcaption>
-            photo /{" "}
             <a href={splashAuthorUrl} target="_blank" rel="noopener noreferrer">
               {splashAuthor}
             </a>
@@ -157,7 +156,6 @@ const { Content } = await render(post)
     width: 28px;
     height: 28px;
     object-fit: cover;
-    border: 1px solid var(--accent);
   }
   .sep {
     opacity: 0.5;
