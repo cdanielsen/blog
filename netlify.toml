@@ -3,6 +3,12 @@
   command = "npm run build"
   publish = "dist"
 
+# Removed post
+[[redirects]]
+  from = "/to-hunt-a-killer-bug/"
+  to = "/"
+  status = 301
+
 # Browsers must always revalidate the service worker kill switch
 [[headers]]
   for = "/sw.js"

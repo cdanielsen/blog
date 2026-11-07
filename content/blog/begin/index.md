@@ -3,7 +3,7 @@ title: Begin
 author: "Christian"
 date: "2019-07-01T00:00:00.001Z"
 description: Why we're here
-splashUrl: https://images.unsplash.com/photo-1559854397-0d8634edcba8?w=1200&q=80&auto=format&fit=crop
+splash: ./splash.jpg
 splashAuthor: Ronaldo de Oliveira
 splashAuthorUrl: https://unsplash.com/@ronaldordeoliveira
 ---

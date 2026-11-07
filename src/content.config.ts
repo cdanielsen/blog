@@ -9,15 +9,16 @@ const blog = defineCollection({
     pattern: "*/index.md",
     generateId: ({ entry }) => entry.split("/")[0],
   }),
-  schema: z.object({
-    title: z.string(),
-    author: z.string(),
-    date: z.coerce.date(),
-    description: z.string().optional(),
-    splashUrl: z.url().optional(),
-    splashAuthor: z.string().optional(),
-    splashAuthorUrl: z.url().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      author: z.string(),
+      date: z.coerce.date(),
+      description: z.string().optional(),
+      splash: image().optional(),
+      splashAuthor: z.string().optional(),
+      splashAuthorUrl: z.url().optional(),
+    }),
 })
 
 export const collections = { blog }

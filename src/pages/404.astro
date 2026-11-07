@@ -4,12 +4,13 @@ import Layout from "../layouts/Layout.astro"
 
 <Layout title="404: Not Found">
   <section class="not-found">
-    <p class="label">// error 404</p>
-    <h1>Not Found</h1>
+    <h1 class="label">// not found</h1>
     <p>
       Well s***, this page does not exist.{" "}
-      <a href="mailto:ckdanielsen@gmail.com">Let me know</a> if you think it
-      should.
+      <a class="text-link" href="mailto:ckdanielsen@gmail.com">
+        Let me know
+      </a>
+      if you think it should.
     </p>
   </section>
 </Layout>
@@ -17,19 +18,11 @@ import Layout from "../layouts/Layout.astro"
 <style>
   .not-found {
     margin-top: 56px;
-    padding: 56px 32px;
-    text-align: center;
   }
-  h1 {
-    margin: 0 0 16px;
-    font-family: var(--font-mono);
-    font-size: clamp(36px, 8vw, 56px);
+  .label {
+    margin-bottom: 40px;
   }
-  p:last-child {
+  p {
     margin: 0;
-    color: var(--muted);
-  }
-  a {
-    color: var(--accent);
   }
 </style>

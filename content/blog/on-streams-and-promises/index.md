@@ -3,7 +3,7 @@ title: On streams and promises
 author: "Christian"
 date: "2019-07-04T00:00:00.001Z"
 description: Why they belong together, and where to watch out
-splashUrl: https://images.unsplash.com/photo-1450529130404-28cc74958a81?w=1200&q=80&auto=format&fit=crop
+splash: ./splash.jpg
 splashAuthor: Marc Wieland
 splashAuthorUrl: https://unsplash.com/@mawiswiss
 ---

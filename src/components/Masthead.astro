@@ -1,12 +1,14 @@
 ---
 import { SITE } from "../consts"
 
-// The masthead is the page's h1 only on the index; elsewhere the page title is.
-const Tag = Astro.url.pathname === "/" ? "h1" : "p"
+// Full size on the index; a shorter version everywhere else so content starts
+// higher up. The masthead is the page's h1 only on the index.
+const isIndex = Astro.url.pathname === "/"
+const Tag = isIndex ? "h1" : "p"
 const [before, after] = SITE.masthead.split("===")
 ---
 
-<header class="masthead grid-panel">
+<header class:list={["masthead", "grid-panel", { compact: !isIndex }]}>
   <Tag class="expr">
     <a href="/">
       {before}
@@ -40,5 +42,17 @@ const [before, after] = SITE.masthead.split("===")
     font-weight: 500;
     font-size: 20px;
     color: var(--muted);
+  }
+
+  .compact {
+    margin-top: 40px;
+    padding: 32px 24px 28px;
+  }
+  .compact .expr {
+    font-size: clamp(26px, 5vw, 36px);
+  }
+  .compact .tagline {
+    margin-top: 10px;
+    font-size: 16px;
   }
 </style>

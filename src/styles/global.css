@@ -154,8 +154,22 @@ h4 {
   color: var(--accent);
 }
 
-.prose a {
+/* In-text links: pink, underlined only on hover */
+.prose a,
+.text-link {
   color: var(--accent);
+}
+
+.prose a:hover,
+.text-link:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .prose blockquote {
