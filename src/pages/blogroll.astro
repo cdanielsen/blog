@@ -1,0 +1,84 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { BLOGROLL } from "../consts"
+
+const entries = BLOGROLL.map(([name, href]) => ({
+  name,
+  href,
+  host: new URL(href).hostname.replace(/^www\./, ""),
+}))
+---
+
+<Layout title="Blogroll">
+  <section class="blogroll">
+    <h1>Blogroll</h1>
+    <p class="intro">
+      Some people I follow, as appreciation for the unknown mentorship they've
+      given me.
+    </p>
+    <ul data-shuffle>
+      {entries.map(({ name, href, host }) => (
+        <li>
+          <a href={href}>
+            <span class="name">{name}</span>
+            <span class="host">{host}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>
+
+<script>
+  import { shuffleChildren } from "../scripts/shuffle"
+
+  document
+    .querySelectorAll<HTMLElement>("[data-shuffle]")
+    .forEach(shuffleChildren)
+</script>
+
+<style>
+  .blogroll {
+    margin-top: 56px;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(34px, 6vw, 48px);
+    letter-spacing: -0.025em;
+  }
+  .intro {
+    margin: 12px 0 40px;
+    color: var(--muted);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 0;
+    border-top: 1px solid var(--rule);
+  }
+  li:last-child a {
+    border-bottom: 1px solid var(--rule);
+  }
+  .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .host {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  a:hover .name,
+  a:hover .host {
+    color: var(--accent);
+  }
+</style>

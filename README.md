@@ -19,9 +19,10 @@ npm run format   # prettier
 
 - `content/blog/<slug>/index.md`: posts, served at `/<slug>/`
 - `content/assets/`: images used by the site (headshot, icon source)
-- `src/pages/`: index, post template (`[slug].astro`), about, 404, `rss.xml`
-- `src/consts.ts`: site metadata, sidebar links, and the Admirees list
-- `src/styles/typography.css`: static snapshot of the old Typography.js theme
+- `src/pages/`: index, post template (`[slug].astro`), about, blogroll, 404, `rss.xml`
+- `src/consts.ts`: site metadata, nav/social links, and the blogroll
+- `src/styles/global.css`: design tokens (colors, fonts) and shared styles
+- `src/lib/shiki-theme.mjs`: code highlighting theme
 - `public/`: copied as-is (resume, favicon, manifest, `sw.js`)
 
 `public/sw.js` unregisters the service worker left behind by the old Gatsby

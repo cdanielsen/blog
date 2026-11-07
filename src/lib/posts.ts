@@ -12,11 +12,9 @@ export function postPath(post: Post): string {
   return `/${post.id}/`
 }
 
-/** e.g. "July 09, 2020", matching Gatsby's `formatString: "MMMM DD, YYYY"` */
+/** e.g. "2020-07-09" */
 export function formatDate(date: Date): string {
-  const month = date.toLocaleString("en-US", { month: "long", timeZone: "UTC" })
-  const day = String(date.getUTCDate()).padStart(2, "0")
-  return `${month} ${day}, ${date.getUTCFullYear()}`
+  return date.toISOString().slice(0, 10)
 }
 
 /** Plain-text excerpt of the markdown body, truncated on a word boundary. */

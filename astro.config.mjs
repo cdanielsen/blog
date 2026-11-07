@@ -2,7 +2,7 @@
 import { defineConfig } from "astro/config"
 import sitemap from "@astrojs/sitemap"
 
-import darcula from "./src/lib/shiki-darcula.mjs"
+import theme from "./src/lib/shiki-theme.mjs"
 
 export default defineConfig({
   site: "https://www.hotmess.codes",
@@ -13,7 +13,7 @@ export default defineConfig({
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {
-      theme: darcula,
+      theme,
     },
   },
 })

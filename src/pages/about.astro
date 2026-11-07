@@ -4,42 +4,44 @@ import Layout from "../layouts/Layout.astro"
 ---
 
 <Layout title="About">
-  <Headshot size={280} class="about-headshot" />
-  <p></p>
-  <h3>Hello!</h3>
-  <p>
-    I'm Christian Danielsen, a web developer working remotely in beautiful
-    Oregon.
-  </p>
-  <p>
-    Some things I'm into: JavaScript/TypeScript, the art of writing tests,
-    continuous everything, and working on teams with a diverse group of people.
-  </p>
-  <p>
-    Here are some of my{" "}
-    <a href="/resume.pdf" target="_blank">
-      credentials
-    </a>
-    . Please feel free to{" "}
-    <a href="mailto:ckdanielsen@gmail.com?subject=Ahoy, Christian!">
-      get in touch!
-    </a>
-  </p>
+  <header class="intro">
+    <Headshot size={160} class="about-headshot" />
+    <div>
+      <p class="label">// about</p>
+      <h1>Hello!</h1>
+    </div>
+  </header>
 
-  <div>
-    <h3>(In)Frequently Asked Questions:</h3>
+  <div class="prose">
     <p>
-      <strong>Q: HotMess?</strong>
+      I'm Christian Danielsen, a web developer working remotely in beautiful
+      Oregon.
     </p>
+    <p>
+      Some things I'm into: JavaScript/TypeScript, the art of writing tests,
+      continuous everything, and working on teams with a diverse group of
+      people.
+    </p>
+    <p>
+      Here are some of my{" "}
+      <a href="/resume.pdf" target="_blank">
+        credentials
+      </a>
+      . Please feel free to{" "}
+      <a href="mailto:ckdanielsen@gmail.com?subject=Ahoy, Christian!">
+        get in touch!
+      </a>
+    </p>
+
+    <h2>(In)Frequently Asked Questions</h2>
+    <h3>Q: HotMess?</h3>
     <p>
       A: I hiked the <a href="https://www.pcta.org">Pacific Crest Trail</a> in
       2010. On a long trail, it's a tradition to adopt an alter ego (a trail
       name). My propensity for misplacing things landed me the title of
       'HotMess'.
     </p>
-    <p>
-      <strong>Q: What's with the masthead?</strong>
-    </p>
+    <h3>Q: What's with the masthead?</h3>
     <p>
       A: If you work with JavaScript, you've probably encountered the famous{" "}
       <a href="https://www.destroyallsoftware.com/talks/wat">wat talk</a>,
@@ -51,10 +53,27 @@ import Layout from "../layouts/Layout.astro"
 </Layout>
 
 <style>
-  :global(.about-headshot) {
-    display: block;
-    margin: 0 auto;
-    width: 17.5rem;
-    height: auto;
+  .intro {
+    margin: 56px 0 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px 32px;
+  }
+  .intro :global(.about-headshot) {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border: 1px solid var(--accent);
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(34px, 6vw, 48px);
+    letter-spacing: -0.025em;
+  }
+  .prose h3 {
+    margin-top: 32px;
+    font-size: 19px;
   }
 </style>

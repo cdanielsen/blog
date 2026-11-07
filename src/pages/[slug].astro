@@ -4,7 +4,6 @@ import { render } from "astro:content"
 
 import Headshot from "../components/Headshot.astro"
 import Layout from "../layouts/Layout.astro"
-import { SITE } from "../consts"
 import {
   formatDate,
   getSortedPosts,
@@ -33,7 +32,7 @@ interface Props {
 }
 
 const { post, previous, next } = Astro.props
-const { title, date, author, splashUrl, splashAuthor, splashAuthorUrl } =
+const { title, description, date, splashUrl, splashAuthor, splashAuthorUrl } =
   post.data
 const { Content } = await render(post)
 ---
@@ -44,89 +43,170 @@ const { Content } = await render(post)
   image={splashUrl}
   type="article"
 >
-  {splashUrl && <img class="splash" src={splashUrl} alt="" />}
-  {splashAuthor && (
-    <p class="splash-credit">
-      Photo by{" "}
-      <a href={splashAuthorUrl} target="_blank" rel="noopener noreferrer">
-        {splashAuthor}
-      </a>
-    </p>
-  )}
   <article>
-    <h2>{title}</h2>
-    <p class="byline">
-      <span>
-        <time datetime={date.toISOString()}>{formatDate(date)}</time> by{" "}
-        {author}
-      </span>
-      <Headshot size={42} class="byline-headshot" />
-    </p>
-    <Content />
+    {splashUrl && (
+      <figure class="splash">
+        <img src={splashUrl} alt="" />
+        {splashAuthor && (
+          <figcaption>
+            photo /{" "}
+            <a href={splashAuthorUrl} target="_blank" rel="noopener noreferrer">
+              {splashAuthor}
+            </a>
+          </figcaption>
+        )}
+      </figure>
+    )}
+
+    <header class="post-header">
+      <h1>{title}</h1>
+      {description && <p class="subtitle">{description}</p>}
+      <div class="byline">
+        <Headshot size={28} class="byline-headshot" />
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span class="sep" aria-hidden="true">
+          /
+        </span>
+        <span>Christian Danielsen</span>
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
   </article>
-  <hr />
-  <ul class="post-nav">
-    <li>
-      {previous && (
-        <a href={postPath(previous)} rel="prev">
-          ← {previous.data.title}
-        </a>
-      )}
-    </li>
-    <li>
-      {next && (
-        <a href={postPath(next)} rel="next">
-          {next.data.title} →
-        </a>
-      )}
-    </li>
-  </ul>
-  <footer>
-    ©{new Date().getFullYear()}
-    {SITE.author}. All Rights Reserved.
-  </footer>
+
+  <nav class="post-nav" aria-label="More posts">
+    {previous ? (
+      <a class="older" href={postPath(previous)} rel="prev">
+        <span class="dir">← older</span>
+        <span class="title">{previous.data.title}</span>
+      </a>
+    ) : (
+      <span />
+    )}
+    {next && (
+      <a class="newer" href={postPath(next)} rel="next">
+        <span class="dir">newer →</span>
+        <span class="title">{next.data.title}</span>
+      </a>
+    )}
+  </nav>
 </Layout>
 
 <style>
   .splash {
-    margin-bottom: 0;
+    margin: 48px 0 0;
   }
-  .splash-credit {
-    text-align: center;
-    font-size: 0.5rem;
+  .splash img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--notch)) 0,
+      100% var(--notch),
+      100% 100%,
+      var(--notch) 100%,
+      0 calc(100% - var(--notch))
+    );
+  }
+  figcaption {
+    margin-top: 10px;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+  figcaption a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  figcaption a:hover {
+    color: var(--accent);
+  }
+
+  .post-header {
+    margin: 40px 0 36px;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(34px, 6vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  .subtitle {
+    margin: 10px 0 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--muted);
   }
   .byline {
-    font-size: 0.83255rem;
-    line-height: 1.75rem;
+    margin-top: 24px;
+    padding: 12px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
-    margin-bottom: 1.75rem;
-    margin-top: -0.875rem;
-  }
-  .byline span {
-    margin-right: 5px;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
   }
   .byline :global(.byline-headshot) {
-    display: inline;
-    width: 2.625rem;
-    height: 2.625rem;
-    margin-bottom: 0;
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    border: 1px solid var(--accent);
   }
-  hr {
-    margin-bottom: 1.75rem;
+  .sep {
+    opacity: 0.5;
   }
+
   .post-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    list-style: none;
-    padding: 0;
-    margin-left: 0;
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
-  footer {
-    text-align: center;
-    font-size: x-small;
+  .post-nav a {
+    display: block;
+    padding: 18px 20px;
+    border: 1px solid var(--rule);
+  }
+  .older {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  }
+  .newer {
+    text-align: right;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  }
+  .dir {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .title {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .post-nav a:hover {
+    border-color: var(--accent);
+  }
+  .post-nav a:hover .title {
+    color: var(--accent);
+  }
+  @media (max-width: 640px) {
+    .post-nav {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 </style>

@@ -1,7 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro"
-import Header from "../components/Header.astro"
-import NavSidebar from "../components/NavSidebar.astro"
+import SiteFooter from "../components/SiteFooter.astro"
+import SiteHeader from "../components/SiteHeader.astro"
 import { SITE } from "../consts"
 
 interface Props {
@@ -9,81 +9,27 @@ interface Props {
   description?: string
   image?: string
   type?: "website" | "article"
-  /** The index page gets the masthead and the nav sidebar. */
-  variant?: "index" | "page"
 }
-
-const { variant = "page", ...head } = Astro.props
 ---
 
 <!doctype html>
 <html lang={SITE.lang}>
   <head>
-    <BaseHead {...head} />
+    <BaseHead {...Astro.props} />
   </head>
   <body>
-    {variant === "index" ? (
-      <div class="index-container">
-        <aside class="sidebar">
-          <NavSidebar />
-        </aside>
-        <div class="index-content">
-          <Header variant="index" />
-          <main>
-            <slot />
-          </main>
-        </div>
-      </div>
-    ) : (
-      <div class="page-container">
-        <Header variant="page" />
-        <main>
-          <slot />
-        </main>
-      </div>
-    )}
+    <SiteHeader />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
   </body>
 </html>
 
 <style>
-  .index-container,
-  .page-container {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 2.625rem 1.3125rem;
-  }
-  .index-container {
-    max-width: 61.25rem;
-    display: flex;
-    flex-direction: row;
-  }
-  .page-container {
-    max-width: 56rem;
-  }
-  .sidebar {
-    flex-grow: 2;
-    margin-right: 3rem;
-    min-width: 125px;
-  }
-  .index-content {
-    flex-grow: 3;
-    padding-left: 50px;
-    border-left: 0.5px solid;
-  }
-
-  @media (max-width: 640px) {
-    .index-container {
-      flex-direction: column-reverse;
-    }
-    .sidebar {
-      margin-right: 0;
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 0.5px solid;
-    }
-    .index-content {
-      padding-left: 0;
-      border-left: none;
-    }
+  main {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
   }
 </style>
