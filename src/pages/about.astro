@@ -5,17 +5,14 @@ import Layout from "../layouts/Layout.astro"
 
 <Layout title="About">
   <header class="intro">
+    <h1 class="label">// about</h1>
     <Headshot size={160} class="about-headshot" />
-    <div>
-      <p class="label">// about</p>
-      <h1>Hello!</h1>
-    </div>
   </header>
 
   <div class="prose">
     <p>
-      I'm Christian Danielsen, a web developer working remotely in beautiful
-      Oregon.
+      Hello! I'm Christian Danielsen, a web developer working remotely in
+      beautiful Oregon.
     </p>
     <p>
       Some things I'm into: JavaScript/TypeScript, the art of writing tests,
@@ -50,23 +47,16 @@ import Layout from "../layouts/Layout.astro"
 
 <style>
   .intro {
-    margin: 56px 0 40px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 24px 32px;
+    margin: 56px 0 32px;
+  }
+  .intro .label {
+    margin-bottom: 20px;
   }
   .intro :global(.about-headshot) {
+    display: block;
     width: 160px;
     height: 160px;
     object-fit: cover;
-    border: 1px solid var(--accent);
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
-  }
-  h1 {
-    margin: 0;
-    font-size: clamp(34px, 6vw, 48px);
-    letter-spacing: -0.025em;
   }
   .prose h3 {
     margin-top: 32px;
