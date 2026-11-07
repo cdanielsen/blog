@@ -102,6 +102,8 @@ h4 {
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 32px 32px;
+  /* Stretch cells slightly so a whole number fit: no cut-off last row/column */
+  background-repeat: round;
   clip-path: polygon(
     0 0,
     calc(100% - var(--notch)) 0,
