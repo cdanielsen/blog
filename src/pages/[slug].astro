@@ -1,0 +1,132 @@
+---
+import type { GetStaticPaths } from "astro"
+import { render } from "astro:content"
+
+import Headshot from "../components/Headshot.astro"
+import Layout from "../layouts/Layout.astro"
+import { SITE } from "../consts"
+import {
+  formatDate,
+  getSortedPosts,
+  postDescription,
+  postPath,
+  type Post,
+} from "../lib/posts"
+
+export const getStaticPaths = (async () => {
+  const posts = await getSortedPosts()
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      // posts are newest first: "previous" is the next-older post
+      previous: posts[index + 1] ?? null,
+      next: posts[index - 1] ?? null,
+    },
+  }))
+}) satisfies GetStaticPaths
+
+interface Props {
+  post: Post
+  previous: Post | null
+  next: Post | null
+}
+
+const { post, previous, next } = Astro.props
+const { title, date, author, splashUrl, splashAuthor, splashAuthorUrl } =
+  post.data
+const { Content } = await render(post)
+---
+
+<Layout
+  title={title}
+  description={postDescription(post, 160)}
+  image={splashUrl}
+  type="article"
+>
+  {splashUrl && <img class="splash" src={splashUrl} alt="" />}
+  {splashAuthor && (
+    <p class="splash-credit">
+      Photo by{" "}
+      <a href={splashAuthorUrl} target="_blank" rel="noopener noreferrer">
+        {splashAuthor}
+      </a>
+    </p>
+  )}
+  <article>
+    <h2>{title}</h2>
+    <p class="byline">
+      <span>
+        <time datetime={date.toISOString()}>{formatDate(date)}</time> by{" "}
+        {author}
+      </span>
+      <Headshot size={42} class="byline-headshot" />
+    </p>
+    <Content />
+  </article>
+  <hr />
+  <ul class="post-nav">
+    <li>
+      {previous && (
+        <a href={postPath(previous)} rel="prev">
+          ← {previous.data.title}
+        </a>
+      )}
+    </li>
+    <li>
+      {next && (
+        <a href={postPath(next)} rel="next">
+          {next.data.title} →
+        </a>
+      )}
+    </li>
+  </ul>
+  <footer>
+    ©{new Date().getFullYear()}
+    {SITE.author}. All Rights Reserved.
+  </footer>
+</Layout>
+
+<style>
+  .splash {
+    margin-bottom: 0;
+  }
+  .splash-credit {
+    text-align: center;
+    font-size: 0.5rem;
+  }
+  .byline {
+    font-size: 0.83255rem;
+    line-height: 1.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1.75rem;
+    margin-top: -0.875rem;
+  }
+  .byline span {
+    margin-right: 5px;
+  }
+  .byline :global(.byline-headshot) {
+    display: inline;
+    width: 2.625rem;
+    height: 2.625rem;
+    margin-bottom: 0;
+  }
+  hr {
+    margin-bottom: 1.75rem;
+  }
+  .post-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
+  }
+  footer {
+    text-align: center;
+    font-size: x-small;
+  }
+</style>

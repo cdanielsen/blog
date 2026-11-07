@@ -1,0 +1,33 @@
+---
+import { getIconData, iconToHTML, iconToSVG } from "@iconify/utils"
+import type { IconifyJSON } from "@iconify/types"
+import fa6Brands from "@iconify-json/fa6-brands/icons.json"
+import fa6Solid from "@iconify-json/fa6-solid/icons.json"
+import ion from "@iconify-json/ion/icons.json"
+
+interface Props {
+  /** "<set>:<icon>", e.g. "fa6-brands:github" */
+  name: string
+  size: string
+}
+
+const sets: Record<string, IconifyJSON> = {
+  "fa6-brands": fa6Brands,
+  "fa6-solid": fa6Solid,
+  ion,
+}
+
+const { name, size } = Astro.props
+const [prefix, iconName] = name.split(":")
+const data = sets[prefix] && getIconData(sets[prefix], iconName)
+if (!data) throw new Error(`Unknown icon "${name}"`)
+
+const { attributes, body } = iconToSVG(data, { height: size })
+const svg = iconToHTML(body, {
+  ...attributes,
+  fill: "currentColor",
+  "aria-hidden": "true",
+})
+---
+
+<Fragment set:html={svg} />

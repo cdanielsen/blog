@@ -1,6 +1,11 @@
-.gatsby-highlight {
-  margin-bottom: 28px;
-}
+@import "@fontsource/merriweather/400.css";
+@import "@fontsource/merriweather/400-italic.css";
+@import "@fontsource/merriweather/700.css";
+@import "@fontsource/merriweather/900.css";
+@import "@fontsource/merriweather/900-italic.css";
+@import "@fontsource/montserrat/900.css";
+
+@import "./typography.css";
 
 ul {
   margin-block-start: 10px;
@@ -12,30 +17,25 @@ a {
   box-shadow: none;
 }
 
-.resume__education-training__header {
-  margin-top: 2.5rem;
+iframe {
+  max-width: 100%;
 }
 
-.resume__education-training__item {
-  margin-bottom: 14px;
+/* Fenced code blocks (Shiki), sized like the old Prism Darcula setup */
+pre.astro-code {
+  margin: 0.5em 0 28px;
+  padding: 1em;
+  overflow: auto;
+  font-family: Consolas, Monaco, "Andale Mono", monospace;
+  line-height: 1.5;
+  tab-size: 4;
 }
 
-.resume__contributions__header {
-  margin-top: 2.5rem;
+pre.astro-code code {
+  font-family: inherit;
+  line-height: inherit;
 }
 
-.resume__contributions__item {
-  margin-bottom: 14px;
-}
-
-.resume__personal__header {
-  margin-top: 2.5rem;
-}
-
-.resume__personal__item {
-  margin-bottom: 14px;
-}
-
-.resume__experience__item {
-  margin-bottom: 8px;
+pre.astro-code ::selection {
+  background: rgba(33, 66, 131, 0.85);
 }

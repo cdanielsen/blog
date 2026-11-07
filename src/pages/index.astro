@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro"
+import {
+  formatDate,
+  getSortedPosts,
+  postDescription,
+  postPath,
+} from "../lib/posts"
+
+const posts = await getSortedPosts()
+---
+
+<Layout title="All posts" variant="index">
+  {posts.map((post) => (
+    <article>
+      <h3>
+        <a href={postPath(post)}>{post.data.title}</a>
+      </h3>
+      <small>
+        <time datetime={post.data.date.toISOString()}>
+          {formatDate(post.data.date)}
+        </time>
+      </small>
+      <p>{postDescription(post)}</p>
+    </article>
+  ))}
+</Layout>
+
+<style>
+  h3 {
+    margin-bottom: 0.4375rem;
+  }
+</style>

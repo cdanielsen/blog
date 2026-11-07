@@ -10,15 +10,15 @@ Reference: the current Gatsby implementation as of `e096f93`.
 
 Single source of truth (e.g. `src/consts.ts`), replacing `gatsby-config.js#siteMetadata`:
 
-| Key | Value |
-|---|---|
-| title | `hotmess.codes` |
-| masthead | `{} - [] === -0` |
-| author | `Christian Danielsen` |
+| Key         | Value                                                                     |
+| ----------- | ------------------------------------------------------------------------- |
+| title       | `hotmess.codes`                                                           |
+| masthead    | `{} - [] === -0`                                                          |
+| author      | `Christian Danielsen`                                                     |
 | description | `Evangalism from the JavaScript pulpit` (sic; keep unless told otherwise) |
-| siteUrl | `https://www.hotmess.codes` |
-| twitter | `CKDanielsen` |
-| lang | `en` |
+| siteUrl     | `https://www.hotmess.codes`                                               |
+| twitter     | `CKDanielsen`                                                             |
+| lang        | `en`                                                                      |
 
 ---
 
@@ -30,15 +30,15 @@ Single source of truth (e.g. `src/consts.ts`), replacing `gatsby-config.js#siteM
 - Colocated non-markdown files (e.g. `testing-stream-code/stream-test.spec.js`) must not be treated as posts.
 - Frontmatter schema (validate with zod):
 
-| Field | Type | Required | Notes |
-|---|---|---|---|
-| `title` | string | yes | |
-| `author` | string | yes | Rendered in byline (currently always "Christian") |
-| `date` | ISO datetime string | yes | Coerce to `Date` |
-| `description` | string | no | Falls back to excerpt |
-| `splashUrl` | URL string | no | |
-| `splashAuthor` | string | no | |
-| `splashAuthorUrl` | URL string | no | |
+| Field             | Type                | Required | Notes                                             |
+| ----------------- | ------------------- | -------- | ------------------------------------------------- |
+| `title`           | string              | yes      |                                                   |
+| `author`          | string              | yes      | Rendered in byline (currently always "Christian") |
+| `date`            | ISO datetime string | yes      | Coerce to `Date`                                  |
+| `description`     | string              | no       | Falls back to excerpt                             |
+| `splashUrl`       | URL string          | no       |                                                   |
+| `splashAuthor`    | string              | no       |                                                   |
+| `splashAuthorUrl` | URL string          | no       |                                                   |
 
 ### 2.2 Slugs and URLs
 
@@ -63,15 +63,16 @@ Single source of truth (e.g. `src/consts.ts`), replacing `gatsby-config.js#siteM
 
 Parity with the `gatsby-transformer-remark` plugin chain:
 
-| Gatsby plugin | Requirement | Astro approach |
-|---|---|---|
-| `gatsby-remark-prismjs` | Fenced code blocks highlighted. Languages in use: `js`, `ts`, `tsx`, `sh`, `toml`, `css`, plus unlabeled fences. Dark theme (currently Prism **Darcula**). Inline code is **not** highlighted. | Built-in Shiki with a dark theme close to Darcula (e.g. `dracula` or `one-dark-pro`), or Prism if a closer match matters |
-| `gatsby-remark-smartypants` | Curly quotes, en/em dashes, ellipses | Built-in (`smartypants: true` is the default) |
-| `gatsby-remark-images` | Responsive images, max width 590px | No posts currently embed images. Use Astro's built-in markdown image handling |
-| `gatsby-remark-responsive-iframe` | Responsive iframes | No posts use iframes. Drop, but CSS-constrain `iframe { max-width: 100% }` |
-| `gatsby-remark-copy-linked-files` | Copy linked local files | No posts use it. Drop |
+| Gatsby plugin                     | Requirement                                                                                                                                                                                    | Astro approach                                                                                                           |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `gatsby-remark-prismjs`           | Fenced code blocks highlighted. Languages in use: `js`, `ts`, `tsx`, `sh`, `toml`, `css`, plus unlabeled fences. Dark theme (currently Prism **Darcula**). Inline code is **not** highlighted. | Built-in Shiki with a dark theme close to Darcula (e.g. `dracula` or `one-dark-pro`), or Prism if a closer match matters |
+| `gatsby-remark-smartypants`       | Curly quotes, en/em dashes, ellipses                                                                                                                                                           | Built-in (`smartypants: true` is the default)                                                                            |
+| `gatsby-remark-images`            | Responsive images, max width 590px                                                                                                                                                             | No posts currently embed images. Use Astro's built-in markdown image handling                                            |
+| `gatsby-remark-responsive-iframe` | Responsive iframes                                                                                                                                                                             | No posts use iframes. Drop, but CSS-constrain `iframe { max-width: 100% }`                                               |
+| `gatsby-remark-copy-linked-files` | Copy linked local files                                                                                                                                                                        | No posts use it. Drop                                                                                                    |
 
 Also:
+
 - Raw inline HTML in markdown must pass through (e.g. `<a name="guide"></a>` anchor in the fullstack post, target of `#guide`).
 - Emoji shortcodes: `:scream:` appears in `to-hunt-a-killer-bug` and currently renders **literally**. Parity means leaving it; optionally add `remark-emoji` (decide).
 - Code blocks need bottom margin (`28px`, from `.gatsby-highlight`) and horizontal scroll on overflow.
@@ -111,6 +112,7 @@ Meta: title `{post title} | hotmess.codes`; description = frontmatter `descripti
 ### 4.3 `/about/`
 
 Single-column layout with the non-index header. Content copied **verbatim** (including "Pacfic" typo unless told otherwise):
+
 - Headshot centered, width `rhythm(10)`, auto height.
 - "Hello!" section, resume link "credentials" (`/resume.pdf`, new tab), mailto "get in touch!" with subject `Ahoy, Christian!`.
 - "(In)Frequently Asked Questions" with the two Q&As (HotMess trail name; wat-talk masthead).
@@ -139,24 +141,25 @@ Single-column layout with the non-index header. Content copied **verbatim** (inc
 ### 5.1 Nav sidebar (index page only)
 
 Vertical column:
+
 1. Headshot (`content/assets/headshot.png`), centered, `rhythm(4)` square, alt "Christian Danielsen".
 2. `<h4>` "This Guy" → `/about`, centered.
 3. `<h4>` "Resume" → `/resume.pdf`, `target="_blank"`, centered.
 4. **Icon box** (§5.2).
 5. `<h4>` "Admirees" + one link per line, centered:
 
-| Name (verbatim, typos included) | URL |
-|---|---|
-| Jake Archibald | https://www.jakearchibald.com |
-| Flavio Copes | https://flaviocopes.com/ |
-| Tania Rascia | https://www.taniarascia.com/ |
-| Jim Fisher | https://jameshfisher.com/ |
-| Dave Cedia | https://daveceddia.com/ |
-| Julia Evans | https://jvns.ca/ |
-| Sarah Drasner | https://sarah.dev/ |
-| Juliette Pretot | https://juliette.sh/ |
-| Vivki Boykis | https://vicki.substack.com/ |
-| Sindre Sorhus | https://sindresorhus.com/ |
+| Name (verbatim, typos included) | URL                           |
+| ------------------------------- | ----------------------------- |
+| Jake Archibald                  | https://www.jakearchibald.com |
+| Flavio Copes                    | https://flaviocopes.com/      |
+| Tania Rascia                    | https://www.taniarascia.com/  |
+| Jim Fisher                      | https://jameshfisher.com/     |
+| Dave Cedia                      | https://daveceddia.com/       |
+| Julia Evans                     | https://jvns.ca/              |
+| Sarah Drasner                   | https://sarah.dev/            |
+| Juliette Pretot                 | https://juliette.sh/          |
+| Vivki Boykis                    | https://vicki.substack.com/   |
+| Sindre Sorhus                   | https://sindresorhus.com/     |
 
 (Typos "Dave Cedia" → Ceddia, "Vivki" → Vicki: fix only if confirmed.)
 
@@ -166,14 +169,14 @@ Vertical column:
 
 Row of icon links, flex wrap, `space-around`, 20px bottom padding, `0.5px solid` bottom border, icons `1.75rem`, `color: inherit`, 5px padding. **Also shuffled client-side on load**, same rules as §5.1.
 
-| Icon | Link |
-|---|---|
-| Twitter (FA) | http://twitter.com/ckdanielsen |
-| GitHub (FA) | http://github.com/cdanielsen |
-| LinkedIn (FA `LinkedinIn`) | http://linkedin.com/in/christiandanielsen |
-| Paper plane (Ionicons `IoIosPaperPlane`) | mailto:ckdanielsen@gmail.com |
-| RSS square (FA) | https://www.hotmess.codes/rss.xml |
-| DEV (FA) | https://dev.to/cdanielsen |
+| Icon                                     | Link                                      |
+| ---------------------------------------- | ----------------------------------------- |
+| Twitter (FA)                             | http://twitter.com/ckdanielsen            |
+| GitHub (FA)                              | http://github.com/cdanielsen              |
+| LinkedIn (FA `LinkedinIn`)               | http://linkedin.com/in/christiandanielsen |
+| Paper plane (Ionicons `IoIosPaperPlane`) | mailto:ckdanielsen@gmail.com              |
+| RSS square (FA)                          | https://www.hotmess.codes/rss.xml         |
+| DEV (FA)                                 | https://dev.to/cdanielsen                 |
 
 - Render as inline SVG at build time (e.g. `astro-icon` with `@iconify-json/fa6-brands`/`fa6-solid`/`ion`, or hand-copied SVGs). No React runtime.
 - Add an `aria-label` per link (currently missing; accessibility improvement).
@@ -222,6 +225,7 @@ Row of icon links, flex wrap, `space-around`, 20px bottom padding, `0.5px solid`
 ### 7.1 RSS: `/rss.xml` (must keep URL; feed readers subscribe to it)
 
 Via `@astrojs/rss`:
+
 - Channel title `hotmess.codes RSS`, description = site description, link = siteUrl.
 - Items sorted by date desc: `title`, `description` (frontmatter description or excerpt; current feed uses excerpt), `link` = `siteUrl + /slug/`, `guid` = same URL (**must be byte-identical to current guids**, e.g. `https://www.hotmess.codes/to-hunt-a-killer-bug/`, so readers don't re-surface old posts), `pubDate`.
 - Optional: include full HTML content (`content:encoded`); current feed does not.

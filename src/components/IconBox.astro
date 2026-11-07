@@ -1,0 +1,27 @@
+---
+import Icon from "./Icon.astro"
+import { SOCIAL_LINKS } from "../consts"
+---
+
+<div class="icon-box" data-shuffle>
+  {SOCIAL_LINKS.map(({ icon, label, href }) => (
+    <a href={href} aria-label={label} title={label}>
+      <Icon name={icon} size="1.75rem" />
+    </a>
+  ))}
+</div>
+
+<style>
+  .icon-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid;
+  }
+  a {
+    color: inherit;
+    padding: 5px;
+  }
+</style>
