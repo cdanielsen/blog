@@ -290,14 +290,14 @@ Via `@astrojs/rss`:
 
 ---
 
-## 11. Open decisions
+## 11. Decisions
 
-1. Hosting provider (Netlify? Vercel? GitHub Pages?) and who/what triggers deploys.
-2. Splash images: hotlink fixed Unsplash URLs, or download locally?
-3. Fix copy typos (Pacfic, Evangalism, Dave Cedia, Vivki, wrong splash credit URL) or keep verbatim?
-4. Keep Twitter link/icon, switch to X, or drop? Same for the 404 "@ me" link.
-5. Mobile layout: keep the current cramped two-column, or stack?
-6. Shiki theme acceptable vs exact Prism Darcula?
-7. Keep the Jest runner for the post companion spec?
-8. Add `remark-emoji` so `:scream:` renders?
-9. Add sitemap/canonical/og:image (recommended), analytics (none today)?
+1. Hosting: **Netlify** (`netlify.toml`; `/resume` 301 and `sw.js` no-cache live there).
+2. Splash images: hotlink fixed `images.unsplash.com` URLs.
+3. Copy typos and splash credit URLs: **fixed** (overrides "verbatim" above).
+4. Twitter: **removed** (icon, `twitter:creator`; the 404 "@ me" link now goes to email). Generic `twitter:card` preview tags kept.
+5. Mobile: sidebar stacks below the post list under 640px.
+6. Shiki with a custom Darcula port.
+7. No test runner for the post companion spec.
+8. No `remark-emoji` (`:scream:` stays literal, as today).
+9. Sitemap, canonical, and og:image added; no analytics.

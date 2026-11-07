@@ -5,7 +5,7 @@ date: "2020-07-09T01:07:00.001Z"
 description: Always check production
 splashUrl: https://images.unsplash.com/photo-1571052382406-acb864c8d001?w=1200&q=80&auto=format&fit=crop
 splashAuthor: Kai Wenzel
-splashAuthorUrl: https://unsplash.com/@marcwieland95
+splashAuthorUrl: https://unsplash.com/@kai_wenzel
 ---
 
 This website has a bug - a nasty one. Well, it had one ([I fixed it](https://github.com/cdanielsen/blog/commit/3f2ebf5c27c1bdf3c50f9ea0e830c9fa71aaac57) in conjunction with publishing this blog post), but as this site is open source, you can check out the dastardly code that caused the problem [here](https://github.com/cdanielsen/blog/blob/2452c1f51ebdb055e91a5ec5c462aeecd3255be4/src/components/navSidebar.js).

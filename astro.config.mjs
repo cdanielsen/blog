@@ -16,7 +16,4 @@ export default defineConfig({
       theme: darcula,
     },
   },
-  redirects: {
-    "/resume": "/resume.pdf",
-  },
 })

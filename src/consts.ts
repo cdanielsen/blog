@@ -2,8 +2,7 @@ export const SITE = {
   title: "hotmess.codes",
   masthead: "{} - [] === -0",
   author: "Christian Danielsen",
-  description: "Evangalism from the JavaScript pulpit",
-  twitter: "CKDanielsen",
+  description: "Evangelism from the JavaScript pulpit",
   lang: "en",
 }
 
@@ -12,20 +11,15 @@ export const ADMIREES: [name: string, href: string][] = [
   ["Flavio Copes", "https://flaviocopes.com/"],
   ["Tania Rascia", "https://www.taniarascia.com/"],
   ["Jim Fisher", "https://jameshfisher.com/"],
-  ["Dave Cedia", "https://daveceddia.com/"],
+  ["Dave Ceddia", "https://daveceddia.com/"],
   ["Julia Evans", "https://jvns.ca/"],
   ["Sarah Drasner", "https://sarah.dev/"],
   ["Juliette Pretot", "https://juliette.sh/"],
-  ["Vivki Boykis", "https://vicki.substack.com/"],
+  ["Vicki Boykis", "https://vicki.substack.com/"],
   ["Sindre Sorhus", "https://sindresorhus.com/"],
 ]
 
 export const SOCIAL_LINKS: { icon: string; label: string; href: string }[] = [
-  {
-    icon: "fa6-brands:twitter",
-    label: "Twitter",
-    href: "http://twitter.com/ckdanielsen",
-  },
   {
     icon: "fa6-brands:github",
     label: "GitHub",
