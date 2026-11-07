@@ -1,6 +1,6 @@
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/400-italic.css";
-@import "@fontsource/inter/600.css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/400-italic.css";
+@import "@fontsource/ibm-plex-sans/700.css";
 @import "@fontsource/space-grotesk/500.css";
 @import "@fontsource/space-grotesk/700.css";
 @import "@fontsource/jetbrains-mono/400.css";
@@ -21,7 +21,7 @@
   --code-border: #3a2257;
   --code-label: #a99bc9;
 
-  --font-sans: Inter, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
   --font-display: "Space Grotesk", var(--font-sans);
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
