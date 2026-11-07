@@ -19,7 +19,7 @@ npm run format   # prettier
 
 - `content/blog/<slug>/index.md`: posts, served at `/<slug>/`
 - `content/assets/`: images used by the site (headshot, icon source)
-- `src/pages/`: index, post template (`[slug].astro`), about, admirees, 404, `rss.xml`
+- `src/pages/`: index, post template (`[slug].astro`), about, faq, admirees, 404, `rss.xml`
 - `src/consts.ts`: site metadata, nav/social links, and the admirees list
 - `src/styles/global.css`: design tokens (colors, fonts) and shared styles
 - `src/lib/shiki-theme.mjs`: code highlighting theme
