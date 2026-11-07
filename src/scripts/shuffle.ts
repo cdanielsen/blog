@@ -2,8 +2,8 @@
  * Randomly reorders an element's children in place (Fisher-Yates).
  *
  * Runs in the browser after the static HTML has loaded, moving whole nodes so
- * a link's text and href can never get out of sync (see the
- * "to-hunt-a-killer-bug" post for why that matters).
+ * a link's text and href can never get out of sync (the Gatsby site once
+ * shuffled during hydration and mismatched names and links).
  */
 export function shuffleChildren(container: HTMLElement): void {
   const children = Array.from(container.children)
