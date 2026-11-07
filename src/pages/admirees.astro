@@ -12,7 +12,6 @@ const entries = ADMIREES.map(([name, href]) => ({
 <Layout title="Admirees">
   <section class="admirees">
     <h1 class="label">// admirees</h1>
-    <p class="intro">Some other people whose writing I admire</p>
     <ul data-shuffle>
       {entries.map(({ name, href, host }) => (
         <li>
@@ -38,12 +37,8 @@ const entries = ADMIREES.map(([name, href]) => ({
   .admirees {
     margin-top: 56px;
   }
-  .intro {
-    margin: 0 0 32px;
-    color: var(--muted);
-  }
   ul {
-    margin: 0;
+    margin: 12px 0 0;
     padding: 0;
     list-style: none;
   }
@@ -54,10 +49,6 @@ const entries = ADMIREES.map(([name, href]) => ({
     justify-content: space-between;
     align-items: baseline;
     padding: 16px 0;
-    border-top: 1px solid var(--rule);
-  }
-  li:last-child a {
-    border-bottom: 1px solid var(--rule);
   }
   .name {
     font-family: var(--font-display);

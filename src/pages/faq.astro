@@ -5,7 +5,6 @@ import Layout from "../layouts/Layout.astro"
 <Layout title="FAQ">
   <section class="faq">
     <h1 class="label">// faq</h1>
-    <p class="intro">Frequently asked questions</p>
     <dl>
       <div class="item">
         <dt>
@@ -44,19 +43,11 @@ import Layout from "../layouts/Layout.astro"
   .faq {
     margin-top: 56px;
   }
-  .intro {
-    margin: 0 0 32px;
-    color: var(--muted);
-  }
   dl {
-    margin: 0;
+    margin: 12px 0 0;
   }
   .item {
     padding: 24px 0;
-    border-top: 1px solid var(--rule);
-  }
-  .item:last-child {
-    border-bottom: 1px solid var(--rule);
   }
   dt {
     font-family: var(--font-display);
