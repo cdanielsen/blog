@@ -1,0 +1,44 @@
+---
+import { SITE } from "../consts"
+
+// The masthead is the page's h1 only on the index; elsewhere the page title is.
+const Tag = Astro.url.pathname === "/" ? "h1" : "p"
+const [before, after] = SITE.masthead.split("===")
+---
+
+<header class="masthead grid-panel">
+  <Tag class="expr">
+    <a href="/">
+      {before}
+      <span class="op">===</span>
+      {after}
+    </a>
+  </Tag>
+  <p class="tagline">{SITE.description}</p>
+</header>
+
+<style>
+  .masthead {
+    margin-top: 56px;
+    padding: 64px 32px 56px;
+    text-align: center;
+  }
+  .expr {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(36px, 8vw, 60px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .op {
+    color: var(--accent);
+  }
+  .tagline {
+    margin: 20px 0 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--muted);
+  }
+</style>

@@ -3,7 +3,7 @@ import { NAV_LINKS } from "../consts"
 
 const path = Astro.url.pathname
 const isActive = (href: string) => {
-  if (!href.endsWith("/")) return false // files (resume, rss)
+  if (!href.endsWith("/")) return false // files (rss)
   if (href !== "/") return path.startsWith(href)
   // "posts" covers the index and post pages
   return !NAV_LINKS.some((l) => l.href !== "/" && path.startsWith(l.href))

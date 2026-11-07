@@ -1,5 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro"
+import Masthead from "../components/Masthead.astro"
 import SiteFooter from "../components/SiteFooter.astro"
 import SiteHeader from "../components/SiteHeader.astro"
 import { SITE } from "../consts"
@@ -20,6 +21,7 @@ interface Props {
   <body>
     <SiteHeader />
     <main>
+      <Masthead />
       <slot />
     </main>
     <SiteFooter />

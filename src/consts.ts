@@ -9,8 +9,7 @@ export const SITE = {
 export const NAV_LINKS: { label: string; href: string }[] = [
   { label: "posts", href: "/" },
   { label: "about", href: "/about/" },
-  { label: "blogroll", href: "/blogroll/" },
-  { label: "resume", href: "/resume.pdf" },
+  { label: "admirees", href: "/admirees/" },
   { label: "rss", href: "/rss.xml" },
 ]
 
@@ -21,7 +20,7 @@ export const SOCIAL_LINKS: { label: string; href: string }[] = [
   { label: "email", href: "mailto:ckdanielsen@gmail.com" },
 ]
 
-export const BLOGROLL: [name: string, href: string][] = [
+export const ADMIREES: [name: string, href: string][] = [
   ["Jake Archibald", "https://www.jakearchibald.com"],
   ["Flavio Copes", "https://flaviocopes.com/"],
   ["Tania Rascia", "https://www.taniarascia.com/"],
