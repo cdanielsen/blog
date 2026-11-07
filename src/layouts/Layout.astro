@@ -1,0 +1,37 @@
+---
+import BaseHead from "../components/BaseHead.astro"
+import Masthead from "../components/Masthead.astro"
+import SiteFooter from "../components/SiteFooter.astro"
+import SiteHeader from "../components/SiteHeader.astro"
+import { SITE } from "../consts"
+
+interface Props {
+  title: string
+  description?: string
+  image?: string
+  type?: "website" | "article"
+}
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <BaseHead {...Astro.props} />
+  </head>
+  <body>
+    <SiteHeader />
+    <main>
+      <Masthead />
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
+
+<style>
+  main {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+</style>

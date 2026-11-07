@@ -1,0 +1,45 @@
+---
+import Headshot from "../components/Headshot.astro"
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout title="About">
+  <header class="intro">
+    <h1 class="label">// about</h1>
+    <Headshot size={160} class="about-headshot" />
+  </header>
+
+  <div class="prose">
+    <p>
+      Hello! I'm Christian Danielsen, a web developer working remotely in
+      beautiful Oregon.
+    </p>
+    <p>
+      Some things I'm into: JavaScript/TypeScript, the art of writing tests,
+      continuous everything, and working on teams with a diverse group of
+      people.
+    </p>
+    <p>
+      Please feel free to{" "}
+      <a href="mailto:ckdanielsen@gmail.com?subject=Ahoy, Christian!">
+        get in touch!
+      </a>
+    </p>
+  </div>
+</Layout>
+
+<style>
+  .intro {
+    margin: 56px 0 32px;
+  }
+  .intro .label {
+    margin-bottom: 40px;
+  }
+  .intro :global(.about-headshot) {
+    display: block;
+    margin: 0 auto;
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+  }
+</style>

@@ -3,7 +3,7 @@ title: Testing streams
 author: "Christian"
 date: "2019-07-14T00:00:00.001Z"
 description: Things get weird
-splashUrl: https://source.unsplash.com/9AxFJaNySB8/4060x3226
+splash: ./splash.jpg
 splashAuthor: Tian Kuan
 splashAuthorUrl: https://unsplash.com/@realaxer
 ---

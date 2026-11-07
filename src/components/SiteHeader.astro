@@ -1,0 +1,64 @@
+---
+import { NAV_LINKS } from "../consts"
+
+const path = Astro.url.pathname
+const isActive = (href: string) => {
+  if (!href.endsWith("/")) return false // files (rss)
+  if (href !== "/") return path.startsWith(href)
+  // "posts" covers the index and post pages
+  return !NAV_LINKS.some((l) => l.href !== "/" && path.startsWith(l.href))
+}
+---
+
+<header class="site-header">
+  <div class="inner">
+    <a class="wordmark" href="/">
+      hotmess<span>.</span>codes
+    </a>
+    <nav aria-label="Main">
+      {NAV_LINKS.map(({ label, href }) => (
+        <a href={href} aria-current={isActive(href) ? "page" : undefined}>
+          {label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--rule);
+  }
+  .inner {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 20px var(--gutter);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+  }
+  .wordmark {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+  .wordmark span {
+    color: var(--accent);
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  nav a:hover {
+    color: var(--accent);
+  }
+  nav a[aria-current="page"] {
+    color: var(--text);
+  }
+</style>

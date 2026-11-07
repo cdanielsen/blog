@@ -3,7 +3,7 @@ title: Stream pipelines
 author: "Christian"
 date: "2019-10-17T00:00:00.001Z"
 description: Power move
-splashUrl: https://source.unsplash.com/uanoYn1AmPs/5184×3456
+splash: ./splash.jpg
 splashAuthor: Tim Marshall
 splashAuthorUrl: https://unsplash.com/@timmarshall
 ---

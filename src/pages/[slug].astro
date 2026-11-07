@@ -1,0 +1,229 @@
+---
+import type { GetStaticPaths } from "astro"
+import { getImage, Image } from "astro:assets"
+import { render } from "astro:content"
+
+import Headshot from "../components/Headshot.astro"
+import Layout from "../layouts/Layout.astro"
+import {
+  formatDate,
+  getSortedPosts,
+  postDescription,
+  postPath,
+  type Post,
+} from "../lib/posts"
+
+export const getStaticPaths = (async () => {
+  const posts = await getSortedPosts()
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      // posts are newest first: "previous" is the next-older post
+      previous: posts[index + 1] ?? null,
+      next: posts[index - 1] ?? null,
+    },
+  }))
+}) satisfies GetStaticPaths
+
+interface Props {
+  post: Post
+  previous: Post | null
+  next: Post | null
+}
+
+const { post, previous, next } = Astro.props
+const { title, description, date, splash, splashAuthor, splashAuthorUrl } =
+  post.data
+const { Content } = await render(post)
+
+// Social cards need an absolute URL to a plain JPEG
+const ogImage = splash
+  ? new URL(
+      (await getImage({ src: splash, width: 1200, format: "jpg" })).src,
+      Astro.site
+    ).href
+  : undefined
+---
+
+<Layout
+  title={title}
+  description={postDescription(post, 160)}
+  image={ogImage}
+  type="article"
+>
+  <article>
+    {splash && (
+      <figure class="splash">
+        <Image
+          src={splash}
+          alt=""
+          widths={[760, 1520]}
+          sizes="(max-width: 808px) 100vw, 760px"
+          loading="eager"
+          fetchpriority="high"
+        />
+        {splashAuthor && (
+          <figcaption>
+            <a
+              class="text-link"
+              href={splashAuthorUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {splashAuthor}
+            </a>
+          </figcaption>
+        )}
+      </figure>
+    )}
+
+    <header class="post-header">
+      <h1>{title}</h1>
+      {description && <p class="subtitle">{description}</p>}
+      <div class="byline">
+        <Headshot size={28} class="byline-headshot" />
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span class="sep" aria-hidden="true">
+          /
+        </span>
+        <span>Christian Danielsen</span>
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <nav class="post-nav" aria-label="More posts">
+    {previous ? (
+      <a class="older" href={postPath(previous)} rel="prev">
+        <span class="dir">← older</span>
+        <span class="title">{previous.data.title}</span>
+      </a>
+    ) : (
+      <span />
+    )}
+    {next && (
+      <a class="newer" href={postPath(next)} rel="next">
+        <span class="dir">newer →</span>
+        <span class="title">{next.data.title}</span>
+      </a>
+    )}
+  </nav>
+</Layout>
+
+<style>
+  .splash {
+    margin: 48px 0 0;
+  }
+  .splash :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--notch)) 0,
+      100% var(--notch),
+      100% 100%,
+      var(--notch) 100%,
+      0 calc(100% - var(--notch))
+    );
+  }
+  figcaption {
+    margin-top: 10px;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .post-header {
+    margin: 40px 0 36px;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(34px, 6vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  .subtitle {
+    margin: 10px 0 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--muted);
+  }
+  .byline {
+    margin-top: 24px;
+    padding: 12px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .byline :global(.byline-headshot) {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+  }
+  .sep {
+    opacity: 0.5;
+  }
+
+  .post-nav {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .post-nav a {
+    display: block;
+    padding: 18px 20px;
+    border: 1px solid var(--rule);
+  }
+  .older {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  }
+  .newer {
+    text-align: right;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  }
+  .dir {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .title {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+  }
+  /* The boxes are clipped, which would cut off a focus outline */
+  .post-nav a:hover,
+  .post-nav a:focus-visible {
+    border-color: var(--accent);
+    outline: none;
+  }
+  .post-nav a:hover .title,
+  .post-nav a:focus-visible .title {
+    color: var(--accent);
+  }
+  @media (max-width: 640px) {
+    .post-nav {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

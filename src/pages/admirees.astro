@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { ADMIREES } from "../consts"
+
+const entries = ADMIREES.map(([name, href]) => ({
+  name,
+  href,
+  host: new URL(href).hostname.replace(/^www\./, ""),
+}))
+---
+
+<Layout title="Admirees">
+  <section class="admirees">
+    <h1 class="label">// admirees</h1>
+    <ul data-shuffle>
+      {entries.map(({ name, href, host }) => (
+        <li>
+          <a href={href}>
+            <span class="name">{name}</span>
+            <span class="host">{host}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>
+
+<script>
+  import { shuffleChildren } from "../scripts/shuffle"
+
+  document
+    .querySelectorAll<HTMLElement>("[data-shuffle]")
+    .forEach(shuffleChildren)
+</script>
+
+<style>
+  .admirees {
+    margin-top: 56px;
+  }
+  ul {
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 0;
+  }
+  .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .host {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  a:hover .name,
+  a:hover .host {
+    color: var(--accent);
+  }
+</style>

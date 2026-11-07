@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout title="FAQ">
+  <section class="faq">
+    <h1 class="label">// faq</h1>
+    <dl>
+      <div class="item">
+        <dt>
+          <span class="prompt" aria-hidden="true">
+            &gt;
+          </span>
+          “hotmess”?
+        </dt>
+        <dd>
+          I hiked the{" "}
+          <a class="text-link" href="https://www.pcta.org">
+            Pacific Crest Trail
+          </a>{" "}
+          in 2010. On a long trail, it's a tradition to adopt an alter ego (a
+          trail name). My propensity for misplacing things landed me the title
+          of “HotMess”.
+        </dd>
+      </div>
+      <div class="item">
+        <dt>
+          <span class="prompt" aria-hidden="true">
+            &gt;
+          </span>
+          What's with the masthead?
+        </dt>
+        <dd>
+          If you work with JavaScript, you've probably encountered the famous{" "}
+          <a
+            class="text-link"
+            href="https://www.destroyallsoftware.com/talks/wat"
+          >
+            wat talk
+          </a>
+          , detailing some of JavaScript's best... eccentricities. I'm so
+          enamored with the masthead expression (which evaluates to true in JS),
+          that I'm considering getting a tattoo of it.
+        </dd>
+      </div>
+    </dl>
+  </section>
+</Layout>
+
+<style>
+  .faq {
+    margin-top: 56px;
+  }
+  dl {
+    margin: 8px 0 0;
+  }
+  .item {
+    padding: 24px 0;
+  }
+  dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  .prompt {
+    margin-right: 10px;
+    font-family: var(--font-mono);
+    color: var(--accent);
+  }
+  dd {
+    margin: 10px 0 0;
+  }
+</style>

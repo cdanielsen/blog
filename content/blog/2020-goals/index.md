@@ -3,7 +3,7 @@ title: 2020 Goals
 author: "Christian"
 date: "2020-01-06T23:04:52.373Z"
 description: Flailing forward
-splashUrl: https://source.unsplash.com/nYToduYJH-c/5000x3333
+splash: ./splash.jpg
 splashAuthor: Clay Banks
 splashAuthorUrl: https://unsplash.com/@claybanks
 ---

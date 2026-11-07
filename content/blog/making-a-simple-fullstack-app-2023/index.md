@@ -3,7 +3,7 @@ title: Bootstrapping a simple fullstack app with serverless
 author: "Christian"
 date: "2023-10-08T00:00:00.001Z"
 description: Make side projects fun again
-splashUrl: https://source.unsplash.com/kXftOLdckGA/4752x3168
+splash: ./splash.jpg
 splashAuthor: Raimond Klavins
 splashAuthorUrl: https://unsplash.com/@raimondklavins
 ---
