@@ -3,7 +3,7 @@ title: To hunt a killer (bug)
 author: "Christian"
 date: "2020-07-09T01:07:00.001Z"
 description: Always check production
-splashUrl: https://source.unsplash.com/dyGWrmJ_i4E/4137x3103
+splashUrl: https://images.unsplash.com/photo-1571052382406-acb864c8d001?w=1200&q=80&auto=format&fit=crop
 splashAuthor: Kai Wenzel
 splashAuthorUrl: https://unsplash.com/@marcwieland95
 ---
